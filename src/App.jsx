@@ -15,7 +15,7 @@ function App() {
       <Navigation {...{ setBlogDisplay, setSelectedTopic, selectedTopic }} />
       <div className="separator">
         {blogDisplay && <Content blogData={blogs[currentBlog]} />}
-        <Feed {...{ setCurrentBlog, setBlogDisplay, selectedTopic }} />
+        <Feed {...{ setCurrentBlog, setBlogDisplay, selectedTopic, blogDisplay }} />
       </div>
     </>
   );
