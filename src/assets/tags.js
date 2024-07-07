@@ -1,4 +1,4 @@
-export const topics = [
+export const tags = [
   "Topic 1",
   "Topic 2",
   "Topic 3",

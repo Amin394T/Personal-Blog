@@ -3,24 +3,24 @@
     "id": 0,
     "path": "the_last_title",
     "title": "The Last Title",
-    "topic": "Topic 6",
     "author": "Writer 3",
-    "date": "2021-01-19"
+    "date": "2021-01-19",
+    "tags": ["Topic 6", "Topic 1", "Topic 3"]
   },
   {
     "id": 1,
     "path": "this_is_a_placeholder_title",
     "title": "This is a Placeholder Title",
-    "topic": "Topic 1",
     "author": "Writer 7",
-    "date": "2023-06-27"
+    "date": "2023-06-27",
+    "tags": ["Topic 2", "Topic 6"]
   },
   {
     "id": 2,
     "path": "yet_another_placeholder",
     "title": "Yet Another Placeholder",
-    "topic": "Topic 1",
     "author": "Writer 3",
-    "date": "2022-11-08"
+    "date": "2022-11-08",
+    "tags": ["Topic 2", "Topic 1", "Topic 7"]
   }
 ]

@@ -1,20 +1,20 @@
 import "./Navigation.css";
-import { topics } from "../../assets/topics.js";
+import { tags } from "../../assets/tags.js";
 
-function Navigation({ setBlogDisplay, setSelectedTopic, selectedTopic }) {
-  let handleSelectTopic = (topic) => {
-    selectedTopic == topic ? setSelectedTopic("") : setSelectedTopic(topic);
+function Navigation({ setBlogDisplay, setSelectedTag, selectedTag }) {
+  let handleSelectTag = (tag) => {
+    selectedTag == tag ? setSelectedTag("") : setSelectedTag(tag);
     setBlogDisplay(false);
   };
 
   return (
     <div className="header">
-      <img className="header-logo" src="src/assets/images/.logo.png" onClick={() => handleSelectTopic("")} />
+      <img className="header-logo" src="src/assets/images/.logo.png" onClick={() => handleSelectTag("")} />
 
-      <div className="header-topics">
-        {topics.map((topic, index) => (
-          <span className={selectedTopic == topic ? "selected-topic" : ""} key={index} onClick={() => handleSelectTopic(topic)} >
-            {topic}
+      <div className="header-tags">
+        {tags.map((tag, index) => (
+          <span className={selectedTag == tag ? "selected-tag" : ""} key={index} onClick={() => handleSelectTag(tag)} >
+            {tag}
           </span>
         ))}
       </div>

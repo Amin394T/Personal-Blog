@@ -8,14 +8,14 @@ import { useState } from "react";
 function App() {
   const [currentBlog, setCurrentBlog] = useState(0);
   const [blogDisplay, setBlogDisplay] = useState(false);
-  const [selectedTopic, setSelectedTopic] = useState("");
+  const [selectedTag, setSelectedTag] = useState("");
 
   return (
     <>
-      <Navigation {...{ setBlogDisplay, setSelectedTopic, selectedTopic }} />
+      <Navigation {...{ setBlogDisplay, setSelectedTag, selectedTag }} />
       <div className="separator">
         {blogDisplay && <Content blogData={blogs[currentBlog]} />}
-        <Feed {...{ setCurrentBlog, setBlogDisplay, selectedTopic, blogDisplay }} />
+        <Feed {...{ setCurrentBlog, setBlogDisplay, selectedTag, blogDisplay }} />
       </div>
     </>
   );

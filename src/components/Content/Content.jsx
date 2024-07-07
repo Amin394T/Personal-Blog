@@ -10,7 +10,7 @@ function Content({ blogData }) {
     <div className="blog">
       <div className="blog-info">
         <h1 className="blog-info-title">{blogData.title}</h1>
-        <span className="blog-info-topic">{blogData.topic}</span>
+        <span className="blog-info-tag">{blogData.tags[0]}</span>
         <span className="blog-info-author">{blogData.author}</span>
         <span className="blog-info-date">{blogData.date}</span>
       </div>
