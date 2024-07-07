@@ -8,15 +8,15 @@ import { useState } from "react";
 function App() {
   const [currentBlog, setCurrentBlog] = useState(0);
   const [blogDisplay, setBlogDisplay] = useState(false);
-  const [selectedTag, setSelectedTag] = useState("");
+  const [searchWord, setSearchWord] = useState("");
   const blogData = currentBlog != 0 ? blogs.find((blog) => blog.id == currentBlog) : blogs[0];
 
   return (
     <>
-      <Navigation {...{ setBlogDisplay, setSelectedTag }} />
+      <Navigation {...{ setBlogDisplay, setSearchWord }} />
       <div className="separator">
         {blogDisplay && <Content {...{ blogData }} />}
-        <Feed {...{ setCurrentBlog, setBlogDisplay, selectedTag, blogDisplay }} />
+        <Feed {...{ setCurrentBlog, setBlogDisplay, searchWord, blogDisplay }} />
       </div>
     </>
   );

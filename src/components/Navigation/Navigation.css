@@ -37,10 +37,10 @@
   .header {
     height: 40px;
     justify-content: space-between;
-    padding: 0px 12px;
+    padding: 0px 15px;
   }
   .header-search {
-    width: 40%;
+    width: 35%;
     height: 15px;
   }
   .header-logo {
