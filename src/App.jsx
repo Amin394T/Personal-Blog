@@ -9,13 +9,13 @@ function App() {
   const [currentBlog, setCurrentBlog] = useState(0);
   const [blogDisplay, setBlogDisplay] = useState(false);
   const [selectedTag, setSelectedTag] = useState("");
-  const blogData = blogs[currentBlog];
-  
+  const blogData = currentBlog != 0 ? blogs.find((blog) => blog.id == currentBlog) : blogs[0];
+
   return (
     <>
       <Navigation {...{ setBlogDisplay, setSelectedTag }} />
       <div className="separator">
-        {blogDisplay && <Content {...{ blogData, currentBlog }} />}
+        {blogDisplay && <Content {...{ blogData }} />}
         <Feed {...{ setCurrentBlog, setBlogDisplay, selectedTag, blogDisplay }} />
       </div>
     </>
