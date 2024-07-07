@@ -4,7 +4,7 @@ import Markdown from "react-markdown";
 
 function Content({ blogData }) {
   const { data, loading } = useFetch("src/assets/markdown/" + blogData.path + ".md");
-  if (loading) return <div className="loadingSpinner">Loading ...</div>;
+  if (loading) return <div className="loadingSpinner">...</div>;
 
   return (
     <div className="blog">

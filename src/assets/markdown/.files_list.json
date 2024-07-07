@@ -13,7 +13,7 @@
     "title": "This is a Placeholder Title",
     "author": "Writer 7",
     "date": "2023-06-27",
-    "tags": ["Topic 2", "Topic 6"]
+    "tags": ["Topic 10", "Topic 6"]
   },
   {
     "id": 2,
@@ -21,6 +21,6 @@
     "title": "Yet Another Placeholder",
     "author": "Writer 3",
     "date": "2022-11-08",
-    "tags": ["Topic 2", "Topic 1", "Topic 7"]
+    "tags": ["Topic 2", "Topic 3", "Topic 7"]
   }
 ]
