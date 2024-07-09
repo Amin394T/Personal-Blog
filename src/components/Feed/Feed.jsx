@@ -2,8 +2,8 @@ import "./Feed.css";
 
 function Feed({ blogs, setCurrentBlog, setBlogDisplay, searchWord, blogDisplay }) {
 
-  const filteredByTag = searchWord ? blogs.filter((blog) => blog.tags.some((tag) => tag.includes(searchWord))) : blogs;
-  const filteredByTitle = searchWord ? blogs.filter((blog) => blog.title.includes(searchWord)) : blogs;
+  const filteredByTag = searchWord ? blogs.filter((blog) => blog.tags.some((tag) => tag.toLowerCase().includes(searchWord))) : blogs;
+  const filteredByTitle = searchWord ? blogs.filter((blog) => blog.title.toLowerCase().includes(searchWord)) : blogs;
   const filteredBlogs = [...new Set([...filteredByTag, ...filteredByTitle])];
 
   const reducedBlogs = blogDisplay ? filteredBlogs.slice(0, 6) : filteredBlogs;
