@@ -8,7 +8,7 @@ function Navigation({ setBlogDisplay, setSearchWord }) {
 
   return (
     <div className="header">
-      <img className="header-logo" src="src/assets/images/.logo.png" onClick={() => handleSearch("")} />
+      <img className="header-logo" src="/images/.logo.png" onClick={() => handleSearch("")} />
       <input className="header-search" type="text" placeholder=" 🔍  Search ..." onChange={(e) => handleSearch(e.target.value)} />
     </div>
   );

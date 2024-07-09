@@ -3,7 +3,7 @@ import useFetch from "../../utilities/hooks/useFetch";
 import Markdown from "react-markdown";
 
 function Content({ blogData }) {
-  const { data, loading } = useFetch("src/assets/markdown/" + blogData.path + ".md");
+  const { data, loading } = useFetch("/markdown/" + blogData.path + ".md");
   if (loading) return <div className="blog"> Loading Content ... </div>;
 
   return (

@@ -12,12 +12,13 @@
   border-radius: 5px;
   background-color: #c2cbd2;
   cursor: pointer;
-  width: 230px;
+  width: 240px;
   position: relative;
 }
 
 .feed-blog-thumbnail {
-  width: 230px;
+  width: 240px;
+  height: 180px;
 }
 
 .feed-blog-title {
