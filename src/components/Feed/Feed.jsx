@@ -1,6 +1,6 @@
 import "./Feed.css";
 
-function Feed({ blogs, setCurrentBlog, setBlogDisplay, searchWord, blogDisplay }) {
+function Feed({ blogs, currentBlog, setCurrentBlog, searchWord }) {
 
   const filteredBlogs = blogs.filter(blog => {
     return (
@@ -11,14 +11,12 @@ function Feed({ blogs, setCurrentBlog, setBlogDisplay, searchWord, blogDisplay }
 
   const sortedBlogs = filteredBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const handleSelectBlog = id => {
+  let handleSelectBlog = id =>
     setCurrentBlog(id);
-    setBlogDisplay(true);
-  };
 
   return (
-    <div className="feed">
-      {sortedBlogs.slice(0, blogDisplay ? 6 : sortedBlogs.length).map(blog => (
+    <div className="feed" style={{ width: currentBlog ? '300px' : 'auto' }}>
+      {sortedBlogs.slice(0, currentBlog ? 6 : sortedBlogs.length).map(blog => (
 
         <div className="feed-blog" onClick={() => handleSelectBlog(blog.id)} key={blog.id}>
           <span className="feed-blog-tag">{blog.tags[0]}</span>

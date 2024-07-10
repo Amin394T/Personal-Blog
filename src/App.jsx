@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import useFetch from "./utilities/hooks/useFetch";
 
 function App() {
-  const [currentBlog, setCurrentBlog] = useState(0);
-  const [blogDisplay, setBlogDisplay] = useState(false);
+  const [currentBlog, setCurrentBlog] = useState(null);
   const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
-    setBlogDisplay(false);
+    searchWord == " " && setSearchWord("");
+    setCurrentBlog(null);
   }, [searchWord]);
 
   const { data, loading } = useFetch("/markdown/.files_list.json");
@@ -25,8 +25,8 @@ function App() {
     <>
       <Navigation {...{ setSearchWord }} />
       <div className="separator">
-        {blogDisplay && <Content {...{ blogData }} />}
-        <Feed {...{ blogs, setCurrentBlog, setBlogDisplay, searchWord, blogDisplay }} />
+        {currentBlog && <Content {...{ blogData }} />}
+        <Feed {...{ blogs, currentBlog, setCurrentBlog, searchWord }} />
       </div>
     </>
   );

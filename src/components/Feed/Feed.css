@@ -18,7 +18,7 @@
 
 .feed-blog-thumbnail {
   width: 240px;
-  height: 180px;
+  height: 160px;
 }
 
 .feed-blog-title {
@@ -43,10 +43,13 @@
 @media screen and (max-width: 1050px) {
   .feed {
     gap: 20px;
+    width: auto !important;
   }
+
   .feed-blog {
     width: 300px;
   }
+
   .feed-blog-thumbnail {
     width: 300px;
     height: 200px;
