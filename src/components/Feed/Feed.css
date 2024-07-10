@@ -44,8 +44,11 @@
   .feed {
     gap: 20px;
   }
-  .feed-blog,
+  .feed-blog {
+    width: 300px;
+  }
   .feed-blog-thumbnail {
     width: 300px;
+    height: 200px;
   }
 }

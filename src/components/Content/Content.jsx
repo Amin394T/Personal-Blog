@@ -3,8 +3,10 @@ import useFetch from "../../utilities/hooks/useFetch";
 import Markdown from "react-markdown";
 
 function Content({ blogData }) {
+  
   const { data, loading } = useFetch("/markdown/" + blogData.path + ".md");
-  if (loading) return <div className="blog"> Loading Content ... </div>;
+  if (loading)
+    return (<div className="spinner-container blog"> <div className="spinner"> </div> </div>);
 
   return (
     <div className="blog">
@@ -15,9 +17,7 @@ function Content({ blogData }) {
         <span className="blog-info-date">{blogData.date}</span>
       </div>
 
-      <div className="blog-text">
-        <Markdown>{data}</Markdown>
-      </div>
+      <div className="blog-text"> <Markdown>{data}</Markdown> </div>
     </div>
   );
 }

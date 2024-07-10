@@ -4,7 +4,6 @@
   padding: 20px;
   margin: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  min-width: 65vw;
   height: fit-content;
 }
 
@@ -38,6 +37,10 @@
   font-style: italic;
 }
 
+.blog-text {
+  width: 65vw;
+}
+
 .blog-text p {
   text-align: justify;
   font-size: 17px;
@@ -48,13 +51,20 @@
   .blog {
     margin: 10px;
   }
+
   .blog-info-title {
     margin: 5px 0;
   }
+
   .blog-info span {
     margin-right: 15px;
     font-size: 12px;
   }
+
+  .blog-text {
+    width: inherit;
+  }
+
   .blog-text p {
     font-size: 15px;
   }

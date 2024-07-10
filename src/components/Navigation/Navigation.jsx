@@ -1,16 +1,18 @@
 import "./Navigation.css";
+import { startTransition } from "react";
 
-function Navigation({ setBlogDisplay, setSearchWord }) {
-  
-  let handleSearch = (searchWord) => {
-    setSearchWord(searchWord.toLowerCase());
-    setBlogDisplay(false);
-  };
+function Navigation({ setSearchWord }) {
+
+  let handleSearch = (searchWord) =>
+    startTransition(() => setSearchWord(searchWord.toLowerCase()));
 
   return (
     <div className="header">
-      <img className="header-logo" src="/images/.logo.png" onClick={() => handleSearch("")} />
-      <input className="header-search" type="text" placeholder="🔍  Search ..." onChange={(e) => handleSearch(e.target.value)} autoFocus />
+      <img className="header-logo" src="/images/.logo.png" onClick={() => handleSearch(" ")} />
+      <input
+        className="header-search" type="text" placeholder="🔍  Search ..."
+        onChange={(event) => handleSearch(event.target.value)} autoFocus
+      />
     </div>
   );
 }
