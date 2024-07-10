@@ -1,3 +1,5 @@
+Click here for a demo : https://amin394t.github.io/Personal-Blog/
+
 ## FUNCTIONAL SPECIFICATION
 
 This is a simplistic blog website template that displays a list of blogs, allows searching blogs, and displays the content of a selected blog. It is adapted for both computer and smartphone/tablet views.

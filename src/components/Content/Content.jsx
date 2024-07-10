@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 function Content({ blogData }) {
   
-  const { data, loading } = useFetch("/markdown/" + blogData.path + ".md");
+  const { data, loading } = useFetch("./markdown/" + blogData.path + ".md");
 
   useEffect(() => {
     document.title = blogData.title;
