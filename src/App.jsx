@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     searchWord == " " && setSearchWord("");
     setCurrentBlog(null);
+    document.title = "Personal Blog";
   }, [searchWord]);
 
   const { data, loading } = useFetch("/markdown/.files_list.json");
@@ -19,7 +20,7 @@ function App() {
     return <div className="spinner-container"> <div className="spinner"> </div> </div>;
   
   const blogs = JSON.parse(data);
-  const blogData = currentBlog != 0 ? blogs.find((blog) => blog.id == currentBlog) : blogs[0];
+  const blogData = currentBlog != 0 && blogs.find((blog) => blog.id == currentBlog);
 
   return (
     <>

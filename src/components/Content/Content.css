@@ -49,11 +49,16 @@
 
   .blog-info-title {
     margin: 5px 0;
+    font-size: 28px;
   }
 
   .blog-info span {
     margin-right: 15px;
     font-size: 12px;
+  }
+
+  .blog-text h2 {
+    font-size: 21px;
   }
 
   .blog-text p {
