@@ -5,14 +5,16 @@ import { useEffect } from "react";
 
 function Content({ blogData }) {
   
-  const { data, loading } = useFetch("./markdown/" + blogData.path + ".md");
+  const { data, loading, error } = useFetch(`./markdown/${blogData.path}.md`);
 
   useEffect(() => {
     document.title = blogData.title;
-  }, []); 
+  }, [blogData.title]); 
 
   if (loading)
-    return (<div className="spinner-container blog"> <div className="spinner"> </div> </div>);
+    return (<div className="spinner blog"> <div> </div> </div>);
+  if (error)
+    return (<div className="error blog"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
 
   return (
     <div className="blog">
@@ -25,7 +27,7 @@ function Content({ blogData }) {
 
       <div className="blog-text"> <Markdown>{data}</Markdown> </div>
 
-      <span className="blog-info-tags">
+      <span className="blog-tags">
         { blogData.tags.map((tag) => <span key={tag}>{"# " + tag}</span>) }
       </span>
     </div>

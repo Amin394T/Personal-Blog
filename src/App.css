@@ -15,19 +15,19 @@ body,
 
 .separator {
   display: flex;
-  flex-wrap: nowrap;
+  flex-direction: row;
   justify-content: center;
   margin: 30px;
 }
 
-.spinner-container {
+.spinner {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
-.spinner {
+.spinner > div {
   width: 40px;
   height: 40px;
   border: 5px solid rgba(0, 0, 0, 0.1);
@@ -36,10 +36,31 @@ body,
   animation: spin 1s linear infinite;
 }
 
+.error {
+  width: 320px;
+  padding-bottom: 20px;
+  margin: auto;
+  background-color: #ffecec;
+  border: 1px solid #f5aca6;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #f44336;
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  top: 30%;
+}
+
+.error > div {
+  font-size: 48px;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -48,6 +69,6 @@ body,
 @media screen and (max-width: 1050px) {
   .separator {
     margin: 0;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 }

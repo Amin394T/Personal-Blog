@@ -15,16 +15,18 @@ function App() {
     document.title = "Personal Blog";
   }, [searchWord]);
 
-  const { data, loading } = useFetch("./markdown/.files_list.json");
+  const { data, loading, error } = useFetch("./markdown/.files_list.json");
   if(loading)
-    return <div className="spinner-container"> <div className="spinner"> </div> </div>;
+    return (<div className="spinner"> <div> </div> </div>);
+  if (error)
+    return (<div className="error"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
   
   const blogs = JSON.parse(data);
-  const blogData = currentBlog != 0 && blogs.find((blog) => blog.id == currentBlog);
+  const blogData = currentBlog && blogs.find((blog) => blog.id == currentBlog);
 
   return (
     <>
-      <Navigation {...{ setSearchWord }} />
+      <Navigation {...{ searchWord, setSearchWord }} />
       <div className="separator">
         {currentBlog && <Content {...{ blogData }} />}
         <Feed {...{ blogs, currentBlog, setCurrentBlog, searchWord }} />

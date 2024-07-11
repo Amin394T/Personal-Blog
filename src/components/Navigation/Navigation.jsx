@@ -1,16 +1,16 @@
 import "./Navigation.css";
 import { startTransition } from "react";
 
-function Navigation({ setSearchWord }) {
+function Navigation({ searchWord, setSearchWord }) {
 
-  let handleSearch = (searchWord) =>
-    startTransition(() => setSearchWord(searchWord.toLowerCase()));
+  let handleSearch = (query) =>
+    startTransition(() => setSearchWord(query.toLowerCase()));
 
   return (
     <div className="header">
       <img className="header-logo" src="./images/.logo.png" onClick={() => handleSearch(" ")} />
       <input
-        className="header-search" type="text" placeholder="🔍  Search ..."
+        className="header-search" value={searchWord} type="text" placeholder="🔍  Search ..."
         onChange={(event) => handleSearch(event.target.value)} autoFocus
       />
     </div>
