@@ -3,63 +3,63 @@
     "id": 85,
     "path": "the_last_title",
     "image": "the_last_title",
-    "title": "The Last Title",
-    "author": "Writer 3",
+    "title": "مقال عشوائي",
+    "author": "الكاتب 3",
     "date": "2021-01-19",
-    "tags": ["Topic 6", "Topic 1", "Topic 3"]
+    "tags": ["موضوع 6", "موضوع 1", "موضوع 3"]
   },
   {
     "id": 11,
     "path": "this_is_a_placeholder_title",
     "image": "this_is_a_placeholder_title",
-    "title": "This is a Placeholder Title",
-    "author": "Writer 7",
+    "title": "هذا عنوان المقال",
+    "author": "الكاتب 7",
     "date": "2023-06-27",
-    "tags": ["Topic 10", "Topic 6"]
+    "tags": ["موضوع 10", "موضوع 6"]
   },
   {
     "id": 37,
     "path": "yet_another_placeholder",
     "image": "yet_another_placeholder",
-    "title": "Yet Another Placeholder",
-    "author": "Writer 3",
+    "title": "عنوان آخر لمقال آخر",
+    "author": "الكاتب 3",
     "date": "2022-11-08",
-    "tags": ["Topic 2", "Topic 3", "Topic 7"]
+    "tags": ["موضوع 2", "موضوع 3", "موضوع 7"]
   },
   {
     "id": 90,
     "path": "generic_chain_of_characters",
     "image": "generic_chain_of_characters",
-    "title": "Generic Chain of Characters",
-    "author": "Writer 8",
+    "title": "مجموعة من الكلمات جنبا لجنب",
+    "author": "الكاتب 8",
     "date": "2024-04-01",
-    "tags": ["Topic 11", "Topic 10", "Topic 4", "Topic 5"]
+    "tags": ["موضوع 11", "موضوع 10", "موضوع 4", "موضوع 5"]
   },
   {
     "id": 38,
     "path": "this_is_the_title",
     "image": "this_is_the_title",
-    "title": "This is the Title",
-    "author": "Writer 1",
+    "title": "عنوان قياسي للتجريب",
+    "author": "الكاتب 1",
     "date": "2019-06-01",
-    "tags": ["Topic 9"]
+    "tags": ["موضوع 9"]
   },
   {
     "id": 66,
     "path": "some_random_title",
     "image": "some_random_title",
-    "title": "Some Random Title",
-    "author": "Writer 2",
+    "title": "عنوان عشوائي مجددا",
+    "author": "الكاتب 2",
     "date": "2020-10-22",
-    "tags": ["Topic 5", "Topic 7", "Topic 9"]
+    "tags": ["موضوع 5", "موضوع 7", "موضوع 9"]
   },
   {
     "id": 24,
     "path": "a_random_blog",
     "image": "a_random_blog",
-    "title": "A Random Blog",
-    "author": "Writer 3",
+    "title": "مقال قياسي بمحتوى عشوائي",
+    "author": "الكاتب 3",
     "date": "2022-11-30",
-    "tags": ["Topic 8", "Topic 2"]
+    "tags": ["موضوع 8", "موضوع 2"]
   }
 ]

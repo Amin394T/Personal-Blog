@@ -10,7 +10,7 @@ function Navigation({ searchWord, setSearchWord }) {
     <div className="header">
       <img className="header-logo" src="./images/.logo.png" onClick={() => handleSearch(" ")} />
       <input
-        className="header-search" value={searchWord} type="text" placeholder="🔍  Search ..."
+        className="header-search" value={searchWord} type="text" placeholder="🔍  بحث المقالات ..."
         onChange={(event) => handleSearch(event.target.value)} autoFocus
       />
     </div>

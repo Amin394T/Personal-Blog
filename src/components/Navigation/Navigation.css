@@ -19,7 +19,7 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   cursor: pointer;
   position: absolute;
-  left: 40px;
+  right: 40px;
 }
 
 .header-search {
@@ -47,6 +47,6 @@
     width: 120px;
     height: 60px;
     position: relative;
-    left: 0;
+    right: 0;
   }
 }

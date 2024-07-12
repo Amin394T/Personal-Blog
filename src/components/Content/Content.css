@@ -22,7 +22,7 @@
 }
 
 .blog-info span {
-  margin-right: 30px;
+  margin-left: 30px;
   font-size: 14px;
 }
 
@@ -32,7 +32,7 @@
   border-radius: 5px;
   color: #f5efe6;
   font-size: 11px;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .blog-text p {
@@ -50,10 +50,11 @@
   .blog-info-title {
     margin: 5px 0;
     font-size: 28px;
+    padding-bottom: 5px;
   }
 
   .blog-info span {
-    margin-right: 15px;
+    margin-left: 15px;
     font-size: 12px;
   }
 
