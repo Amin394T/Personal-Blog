@@ -8,8 +8,10 @@ function Feed({ blogs, currentBlog, setCurrentBlog, searchWord }) {
   );
   const sortedBlogs = filteredBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  let handleSelectBlog = id =>
+  let handleSelectBlog = (id) => {
     setCurrentBlog(id);
+    window.scrollTo(0, 0);
+  }
 
   return (
     <div className="feed" style={{ width: currentBlog ? '300px' : 'auto' }}>
