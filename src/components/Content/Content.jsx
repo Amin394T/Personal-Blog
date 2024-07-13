@@ -20,15 +20,15 @@ function Content({ blogData }) {
     <div className="blog">
       <div className="blog-info">
         <h1 className="blog-info-title">{blogData.title}</h1>
-        <span>{"📘 " + blogData.tags[0]}</span>
-        <span>{"🖊️ " + blogData.author}</span>
-        <span>{"🕓 " + blogData.date}</span>
+        <span>📘 &nbsp;{blogData.tags[0]}</span>
+        <span>🖊️ &nbsp;{blogData.author}</span>
+        <span>🕓 &nbsp;{blogData.date}</span>
       </div>
 
       <div className="blog-text"> <Markdown>{data}</Markdown> </div>
 
       <span className="blog-tags">
-        { blogData.tags.map((tag) => <span key={tag}>{"# " + tag}</span>) }
+        { blogData.tags.map((tag) => <span key={tag}>&#35; {tag}</span>) }
       </span>
     </div>
   );
