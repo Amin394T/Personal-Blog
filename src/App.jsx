@@ -12,14 +12,14 @@ function App() {
   useEffect(() => {
     searchWord == " " && setSearchWord("");
     setCurrentBlog(null);
-    document.title = "Personal Blog";
+    document.title = "مدونة شخصية";
   }, [searchWord]);
 
   const { data, loading, error } = useFetch("./markdown/.files_list.json");
   if(loading)
     return (<div className="spinner"> <div> </div> </div>);
   if (error)
-    return (<div className="error"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
+    return (<div className="error"> <div> &#x2716; </div> حدث عطب تقني ! </div>);
   
   const blogs = JSON.parse(data);
   const blogData = currentBlog && blogs.find((blog) => blog.id == currentBlog);

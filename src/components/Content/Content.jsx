@@ -14,7 +14,7 @@ function Content({ blogData }) {
   if (loading)
     return (<div className="spinner blog"> <div> </div> </div>);
   if (error)
-    return (<div className="error blog"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
+    return (<div className="error blog"> <div> &#x2716; </div> حدث عطب تقني ! </div>);
 
   return (
     <div className="blog">
