@@ -21,6 +21,7 @@
 .feed-blog-thumbnail {
   width: 240px;
   height: 160px;
+  border-radius: 5px 5px 0 0;
 }
 
 .feed-blog-title {
