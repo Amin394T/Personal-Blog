@@ -8,7 +8,7 @@ function Navigation({ searchWord, setSearchWord }) {
 
   return (
     <div className="header">
-      <img className="header-logo" src="./images/.logo.png" onClick={() => handleSearch(" ")} />
+      <img className="header-logo" src="./images/_logo.png" onClick={() => handleSearch(" ")} />
       <input
         className="header-search" value={searchWord} type="text" placeholder="🔍  Search ..."
         onChange={(event) => handleSearch(event.target.value)} autoFocus

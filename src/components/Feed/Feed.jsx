@@ -19,7 +19,7 @@ function Feed({ blogs, currentBlog, setCurrentBlog, searchWord }) {
 
         <div className="feed-blog" onClick={() => handleSelectBlog(blog.id)} key={blog.id}>
           <span className="feed-blog-tag">{blog.tags[0]}</span>
-          <img className="feed-blog-thumbnail" src={`./images/${blog.image || ".placeholder.png"}`} />
+          <img className="feed-blog-thumbnail" src={`./images/${blog.image || "_placeholder.png"}`} />
           <div className="feed-blog-title">{blog.title}</div>
         </div>
       

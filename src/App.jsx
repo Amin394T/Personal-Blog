@@ -15,7 +15,7 @@ function App() {
     document.title = "Personal Blog";
   }, [searchWord]);
 
-  const { data, loading, error } = useFetch("./markdown/.files_list.json");
+  const { data, loading, error } = useFetch("./markdown/_files_list.json");
   if(loading)
     return (<div className="spinner"> <div> </div> </div>);
   if (error)
