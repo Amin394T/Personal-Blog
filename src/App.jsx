@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import useFetch from "./utilities/hooks/useFetch";
 
 function App() {
-  const [currentBlog, setCurrentBlog] = useState(null);
+  const [currentBlog, setCurrentBlog] = useState(0);
   const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
     searchWord == " " && setSearchWord("");
-    setCurrentBlog(null);
+    setCurrentBlog(0);
     document.title = "Personal Blog";
   }, [searchWord]);
 
@@ -22,13 +22,13 @@ function App() {
     return (<div className="error"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
   
   const blogs = JSON.parse(data);
-  const blogData = currentBlog && blogs.find((blog) => blog.id == currentBlog);
+  const blogData = blogs.find((blog) => blog.id == currentBlog);
 
   return (
     <>
       <Navigation {...{ searchWord, setSearchWord }} />
       <div className="separator">
-        {currentBlog && <Content {...{ blogData }} />}
+        <Content {...{ blogData }} />
         <Feed {...{ blogs, currentBlog, setCurrentBlog, searchWord }} />
       </div>
     </>

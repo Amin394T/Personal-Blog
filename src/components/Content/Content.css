@@ -5,7 +5,8 @@
   margin: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   height: fit-content;
-  width: 60vw;
+  width: calc(100% - 425px);
+  max-width: 60vw;
 }
 
 .blog-info {
@@ -41,10 +42,15 @@
   line-height: 1.7;
 }
 
+.blog-welcome {
+  width: 100%;
+}
+
 @media screen and (max-width: 1050px) {
   .blog {
     margin: 10px;
     width: auto;
+    max-width: 100%;
   }
 
   .blog-info-title {

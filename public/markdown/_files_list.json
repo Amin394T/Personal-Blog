@@ -1,5 +1,14 @@
 [
   {
+    "id": 0,
+    "path": "_welcome",
+    "image": "",
+    "title": "Welcome to my Blog!",
+    "author": "",
+    "date": "",
+    "tags": []
+  },
+  {
     "id": 85,
     "path": "the_last_title",
     "image": "the_last_title.png",

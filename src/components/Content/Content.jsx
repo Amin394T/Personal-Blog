@@ -17,7 +17,9 @@ function Content({ blogData }) {
     return (<div className="error blog"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
 
   return (
+    blogData.id != 0 ?
     <div className="blog">
+
       <div className="blog-info">
         <h1 className="blog-info-title">{blogData.title}</h1>
         <span>📘 &nbsp;{blogData.tags[0]}</span>
@@ -30,6 +32,12 @@ function Content({ blogData }) {
       <span className="blog-tags">
         { blogData.tags.map((tag) => <span key={tag}>&#35; {tag}</span>) }
       </span>
+    
+    </div>
+    :
+    <div className="blog blog-welcome">
+      <h1 className="blog-info-title">{blogData.title}</h1>
+      <div className="blog-text"> <Markdown>{data}</Markdown> </div>
     </div>
   );
 }
