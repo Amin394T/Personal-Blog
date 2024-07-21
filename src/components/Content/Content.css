@@ -47,11 +47,17 @@
   width: 100%;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1080px) {
   .blog {
-    margin: 10px;
+    margin: 10px 30px;
     width: auto;
     max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .blog {
+    margin: 10px;
   }
 
   .blog-info-title {
