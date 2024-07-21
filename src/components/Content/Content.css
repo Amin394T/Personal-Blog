@@ -5,7 +5,8 @@
   margin: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   height: fit-content;
-  width: 60vw;
+  width: calc(100% - 425px);
+  max-width: 60vw;
 }
 
 .blog-info {
@@ -33,6 +34,7 @@
   color: #f5efe6;
   font-size: 11px;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .blog-text p {
@@ -41,10 +43,21 @@
   line-height: 1.7;
 }
 
-@media screen and (max-width: 1050px) {
+.blog-welcome {
+  width: 100%;
+}
+
+@media screen and (max-width: 1080px) {
+  .blog {
+    margin: 10px 30px;
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 550px) {
   .blog {
     margin: 10px;
-    width: auto;
   }
 
   .blog-info-title {

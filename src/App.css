@@ -16,9 +16,8 @@ body,
 
 .separator {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  margin: 0 30px;
+  flex-wrap: wrap;
   padding-top: 100px;
 }
 
@@ -65,12 +64,5 @@ body,
 
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@media screen and (max-width: 1050px) {
-  .separator {
-    margin: 0;
-    flex-direction: column;
   }
 }

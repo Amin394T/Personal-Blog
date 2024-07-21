@@ -34,9 +34,10 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   width: 25%;
   height: 20px;
+  font-family: Cairo, sans-serif
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1080px) {
   .header {
     height: 40px;
     justify-content: space-between;
@@ -44,7 +45,7 @@
   }
   .header-search {
     width: 35%;
-    height: 15px;
+    height: 14px;
   }
   .header-logo {
     width: 120px;
