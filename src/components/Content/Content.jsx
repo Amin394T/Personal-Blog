@@ -8,7 +8,7 @@ function Content({ blogData, setSearchWord }) {
   const { data, loading, error } = useFetch(`./markdown/${blogData.path}.md`);
 
   useEffect(() => {
-    document.title = blogData.id != 0 ? blogData.title : "Personal Blog";
+    document.title = blogData.title;
   }, [blogData]);
 
   let handleSearch = (query) =>
