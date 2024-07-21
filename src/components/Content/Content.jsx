@@ -3,13 +3,16 @@ import useFetch from "../../utilities/hooks/useFetch";
 import Markdown from "react-markdown";
 import { useEffect } from "react";
 
-function Content({ blogData }) {
+function Content({ blogData, setSearchWord }) {
   
   const { data, loading, error } = useFetch(`./markdown/${blogData.path}.md`);
 
   useEffect(() => {
-    document.title = blogData.title;
-  }, [blogData.title]); 
+    document.title = blogData.id != 0 ? blogData.title : "Personal Blog";
+  }, [blogData]);
+
+  let handleSearch = (query) =>
+    setSearchWord(query.toLowerCase());
 
   if (loading)
     return (<div className="spinner blog"> <div> </div> </div>);
@@ -30,7 +33,7 @@ function Content({ blogData }) {
       <div className="blog-text"> <Markdown>{data}</Markdown> </div>
 
       <span className="blog-tags">
-        { blogData.tags.map((tag) => <span key={tag}>&#35; {tag}</span>) }
+        { blogData.tags.map((tag) => <span key={tag} onClick={() => handleSearch(tag)}>&#35; {tag}</span>) }
       </span>
     
     </div>
