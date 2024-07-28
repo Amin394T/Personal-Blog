@@ -10,7 +10,7 @@ function App() {
   const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
-    const path = window.location.pathname.split('/')[2];
+    const path = new URLSearchParams(window.location.search).get('blog');
     if(path) setCurrentBlog(path);
   }, []);
 
@@ -22,7 +22,6 @@ function App() {
 
   const blogs = JSON.parse(data);
   const blogData = blogs.find((blog) => blog.id == currentBlog);
-  
 
   return (
     <>

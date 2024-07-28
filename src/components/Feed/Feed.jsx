@@ -16,7 +16,7 @@ function Feed({ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord })
     setCurrentBlog(id);
     setSearchWord("");
     window.scrollTo(0, 0);
-    history.pushState({ blogID: id }, '', id);
+    history.pushState({ blogID: id }, '', `?blog=${id}`);
   }
 
   return (

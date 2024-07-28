@@ -13,7 +13,7 @@ function Content({ blogData, setSearchWord }) {
 
   let handleSearch = (query) => {
     setSearchWord(query.toLowerCase());
-    history.pushState({}, '', import.meta.env.BASE_URL);
+    history.pushState({}, '', window.location.pathname);
   }
 
   if (error || !blogData)
