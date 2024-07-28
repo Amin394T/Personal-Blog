@@ -5,19 +5,21 @@ import { useEffect } from "react";
 
 function Content({ blogData, setSearchWord }) {
   
-  const { data, loading, error } = useFetch(`./markdown/${blogData.path}.md`);
+  const { data, loading, error } = useFetch(`./markdown/${blogData?.path}.md`);
 
   useEffect(() => {
-    document.title = blogData.title;
+    document.title = blogData?.title || "حدث عطب تقني";
   }, [blogData]);
 
-  let handleSearch = (query) =>
+  let handleSearch = (query) => {
     setSearchWord(query.toLowerCase());
+    history.pushState({}, '', window.location.pathname);
+  }
 
+  if (error || !blogData)
+    return (<div className="error blog"> <div> &#x2716; </div> حدث عطب تقني ! </div>);
   if (loading)
     return (<div className="spinner blog"> <div> </div> </div>);
-  if (error)
-    return (<div className="error blog"> <div> &#x2716; </div> حدث عطب تقني ! </div>);
 
   return (
     blogData.id != 0 ?
