@@ -11,8 +11,10 @@ function Content({ blogData, setSearchWord }) {
     document.title = blogData.title;
   }, [blogData]);
 
-  let handleSearch = (query) =>
+  let handleSearch = (query) => {
     setSearchWord(query.toLowerCase());
+    history.pushState({}, '', '/Personal-Blog/');
+  }
 
   if (loading)
     return (<div className="spinner blog"> <div> </div> </div>);
