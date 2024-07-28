@@ -9,7 +9,7 @@ function Feed({ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord })
   const sortedBlogs = filteredBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const relatedBlogs = currentBlog && !searchWord ? sortedBlogs.filter((blog) =>
-    blog.tags[0] == blogs.find((blog) => blog.id == currentBlog).tags[0])
+    blog.tags[0] == blogs.find((blog) => blog.id == currentBlog)?.tags[0])
   : sortedBlogs.filter((blog) => blog.id != 0);
 
   let handleSelectBlog = (id) => {

@@ -4,23 +4,23 @@ import Markdown from "react-markdown";
 import { useEffect } from "react";
 
 function Content({ blogData, setSearchWord }) {
-  
-  const { data, loading, error } = useFetch(`./markdown/${blogData.path}.md`);
+
+  const { data, loading, error } = useFetch(`./markdown/${blogData?.path}.md`);
 
   useEffect(() => {
-    document.title = blogData.title;
+    document.title = blogData?.title || "An Error Has Occured";
   }, [blogData]);
 
   let handleSearch = (query) => {
     setSearchWord(query.toLowerCase());
-    history.pushState({}, '', '/Personal-Blog/');
+    history.pushState({}, '', import.meta.env.BASE_URL);
   }
 
+  if (error || !blogData)
+    return (<div className="error blog"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
   if (loading)
     return (<div className="spinner blog"> <div> </div> </div>);
-  if (error)
-    return (<div className="error blog"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
-
+  
   return (
     blogData.id != 0 ?
     <div className="blog">

@@ -15,13 +15,14 @@ function App() {
   }, []);
 
   const { data, loading, error } = useFetch("./markdown/_files_list.json");
-  if(loading)
-    return (<div className="spinner"> <div> </div> </div>);
   if (error)
     return (<div className="error"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
+  if(loading)
+    return (<div className="spinner"> <div> </div> </div>);
 
   const blogs = JSON.parse(data);
   const blogData = blogs.find((blog) => blog.id == currentBlog);
+  
 
   return (
     <>

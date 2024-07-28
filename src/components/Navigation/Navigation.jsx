@@ -7,7 +7,7 @@ function Navigation({ setCurrentBlog, searchWord, setSearchWord }) {
     startTransition(() => setSearchWord(query.toLowerCase()));
     setCurrentBlog(0);
     window.scrollTo(0, 0);
-    history.pushState({}, '', '/Personal-Blog/');
+    history.pushState({}, '', import.meta.env.BASE_URL);
   };
   
   return (
