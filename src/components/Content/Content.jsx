@@ -22,7 +22,7 @@ function Content({ blogData, setSearchWord }) {
     return (<div className="spinner blog"> <div> </div> </div>);
   
   return (
-    blogData.id != 0 ?
+    blogData.path != "_welcome" ?
     <div className="blog">
 
       <div className="blog-info">

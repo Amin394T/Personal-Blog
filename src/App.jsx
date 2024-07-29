@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import useFetch from "./utilities/hooks/useFetch";
 
 function App() {
-  const [currentBlog, setCurrentBlog] = useState(0);
+  const [currentBlog, setCurrentBlog] = useState("_welcome");
   const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function App() {
     return (<div className="spinner"> <div> </div> </div>);
 
   const blogs = JSON.parse(data);
-  const blogData = blogs.find((blog) => blog.id == currentBlog);
+  const blogData = blogs.find((blog) => blog.path == currentBlog);
 
   return (
     <>
