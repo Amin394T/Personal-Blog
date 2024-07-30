@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import useFetch from "./utilities/hooks/useFetch";
 
 function App() {
-  const [currentBlog, setCurrentBlog] = useState("_welcome");
+  const [currentBlog, setCurrentBlog] = useState(null);
   const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
@@ -16,18 +16,17 @@ function App() {
 
   const { data, loading, error } = useFetch("./markdown/_files_list.json");
   if (error)
-    return (<div className="error"> <div> &#x2716; </div> Oops! Something went wrong. </div>);
+    return (<div className="error"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
   if(loading)
-    return (<div className="spinner"> <div> </div> </div>);
+    return (<div className="spinner"> <div></div> </div>);
 
   const blogs = JSON.parse(data);
-  const blogData = blogs.find((blog) => blog.path == currentBlog);
 
   return (
     <>
       <Navigation {...{ setCurrentBlog, searchWord, setSearchWord }} />
       <div className="separator">
-        {!searchWord && <Content {...{ blogData, setSearchWord }} />}
+        {!searchWord && <Content {...{ blogs, currentBlog, setSearchWord }} />}
         <Feed {...{ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord }} />
       </div>
     </>

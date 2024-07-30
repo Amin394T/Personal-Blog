@@ -5,7 +5,7 @@ function Navigation({ setCurrentBlog, searchWord, setSearchWord }) {
 
   let handleSearch = (query) => {
     startTransition(() => setSearchWord(query.toLowerCase()));
-    setCurrentBlog("_welcome");
+    setCurrentBlog(null);
     window.scrollTo(0, 0);
     history.pushState({}, '', window.location.pathname);
   };

@@ -8,9 +8,9 @@ function Feed({ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord })
   );
   const sortedBlogs = filteredBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const relatedBlogs = currentBlog != "_welcome" && !searchWord ? sortedBlogs.filter((blog) =>
+  const relatedBlogs = currentBlog && !searchWord ? sortedBlogs.filter((blog) =>
     blog.tags[0] == blogs.find((blog) => blog.path == currentBlog)?.tags[0])
-  : sortedBlogs.filter((blog) => blog.path != "_welcome");
+  : sortedBlogs;
 
   let handleSelectBlog = (path) => {
     setCurrentBlog(path);
@@ -20,8 +20,8 @@ function Feed({ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord })
   }
 
   return (
-    <div className="feed" style={{ width: currentBlog != "_welcome" && !searchWord ? '300px' : 'auto' }}>
-      {relatedBlogs.slice(0, currentBlog != "_welcome" ? 6 : relatedBlogs.length).map((blog) => (
+    <div className="feed" style={{ width: currentBlog && !searchWord ? '300px' : 'auto' }}>
+      {relatedBlogs.slice(0, currentBlog ? 6 : relatedBlogs.length).map((blog) => (
 
         <div className="feed-blog" onClick={() => handleSelectBlog(blog.path)} key={blog.path}>
           <span className="feed-blog-tag">{blog.tags[0]}</span>

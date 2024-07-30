@@ -1,13 +1,5 @@
 [
   {
-    "path": "_welcome",
-    "image": "",
-    "title": "Welcome to my Blog!",
-    "author": "",
-    "date": "",
-    "tags": []
-  },
-  {
     "path": "the_last_title",
     "image": "the_last_title.png",
     "title": "The Last Title",
