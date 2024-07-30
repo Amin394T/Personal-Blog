@@ -37,14 +37,14 @@
   cursor: pointer;
 }
 
+.blog > h1 {
+  margin-top: 0;
+}
+
 .blog-text p {
   text-align: justify;
   font-size: 17px;
   line-height: 1.7;
-}
-
-.blog-welcome {
-  width: 100%;
 }
 
 @media screen and (max-width: 1080px) {
