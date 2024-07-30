@@ -1,3 +1,5 @@
+# Welcome to my Blog!
+
 This is a simplistic blog website template that displays a list of blogs, allows searching blogs, and displays the content of a selected blog. It is adapted for both computer, tablet, and smartphone views.
 
 The default view shows a welcome message, followed by the list of all blogs sorted by date, you can return to this view from anywhere by clicking on the website logo located in the navigation bar, while the search bar on its right allows filtering blogs by title and by tags.

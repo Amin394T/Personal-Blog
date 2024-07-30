@@ -1,15 +1,5 @@
 [
   {
-    "id": 0,
-    "path": "_welcome",
-    "image": "",
-    "title": "Welcome to my Blog!",
-    "author": "",
-    "date": "",
-    "tags": []
-  },
-  {
-    "id": 85,
     "path": "the_last_title",
     "image": "the_last_title.png",
     "title": "The Last Title",
@@ -18,7 +8,6 @@
     "tags": ["Topic 6", "Topic 1", "Topic 3"]
   },
   {
-    "id": 11,
     "path": "this_is_a_placeholder_title",
     "image": "this_is_a_placeholder_title.png",
     "title": "This is a Placeholder Title",
@@ -27,7 +16,6 @@
     "tags": ["Topic 2", "Topic 6"]
   },
   {
-    "id": 37,
     "path": "yet_another_placeholder",
     "image": "yet_another_placeholder.png",
     "title": "Yet Another Placeholder",
@@ -36,7 +24,6 @@
     "tags": ["Topic 2", "Topic 3", "Topic 7"]
   },
   {
-    "id": 90,
     "path": "generic_chain_of_characters",
     "image": "generic_chain_of_characters.png",
     "title": "Generic Chain of Characters",
@@ -45,7 +32,6 @@
     "tags": ["Topic 8", "Topic 1", "Topic 7", "Topic 5"]
   },
   {
-    "id": 38,
     "path": "this_is_the_title",
     "image": "this_is_the_title.png",
     "title": "This is the Title",
@@ -54,7 +40,6 @@
     "tags": ["Topic 5"]
   },
   {
-    "id": 66,
     "path": "some_random_title",
     "image": "some_random_title.png",
     "title": "Some Random Title",
@@ -63,7 +48,6 @@
     "tags": ["Topic 2", "Topic 8", "Topic 6"]
   },
   {
-    "id": 24,
     "path": "a_random_blog",
     "image": "a_random_blog.png",
     "title": "A Random Blog",
