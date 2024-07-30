@@ -6,7 +6,8 @@ function Feed({ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord })
       (blog.tags.some(tag => tag.toLowerCase().includes(searchWord))) ||
       (blog.title.toLowerCase().includes(searchWord))
   );
-  const sortedBlogs = filteredBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const sortedBlogs = filteredBlogs.sort((blog1, blog2) => new Date(blog1.date) - new Date(blog2.date));
 
   const relatedBlogs = currentBlog && !searchWord ? sortedBlogs.filter((blog) =>
     blog.tags[0] == blogs.find((blog) => blog.path == currentBlog)?.tags[0])
@@ -16,12 +17,12 @@ function Feed({ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord })
     setCurrentBlog(path);
     setSearchWord("");
     window.scrollTo(0, 0);
-    history.pushState({ blog: path }, '', `?blog=${path}`);
-  }
+    history.pushState({ blog: path }, "", `?blog=${path}`);
+  };
 
   return (
-    <div className="feed" style={{ width: currentBlog && !searchWord ? '300px' : 'auto' }}>
-      {relatedBlogs.slice(0, currentBlog ? 6 : relatedBlogs.length).map((blog) => (
+    <div className="feed" style={{ width: currentBlog && !searchWord ? "300px" : "auto" }}>
+      { relatedBlogs.slice(0, currentBlog ? 6 : relatedBlogs.length).map((blog) => (
 
         <div className="feed-blog" onClick={() => handleSelectBlog(blog.path)} key={blog.path}>
           <span className="feed-blog-tag">{blog.tags[0]}</span>
@@ -29,7 +30,7 @@ function Feed({ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord })
           <div className="feed-blog-title">{blog.title}</div>
         </div>
       
-      ))}
+      )) }
     </div>
   );
 }
