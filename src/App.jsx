@@ -10,9 +10,10 @@ function App() {
   const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
-    const path = new URLSearchParams(window.location.search).get('blog');
+    const path = new URLSearchParams(window.location.search).get("blog");
     if(path) setCurrentBlog(path);
   }, []);
+  
   if(searchWord) document.title = "جاري البحث ...";
 
   const { data, loading, error } = useFetch("./markdown/_files_list.json");
@@ -27,7 +28,7 @@ function App() {
     <>
       <Navigation {...{ setCurrentBlog, searchWord, setSearchWord }} />
       <div className="separator">
-        {!searchWord && <Content {...{ blogs, currentBlog, setSearchWord }} />}
+        { !searchWord && <Content {...{ blogs, currentBlog, setSearchWord }} /> }
         <Feed {...{ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord }} />
       </div>
     </>

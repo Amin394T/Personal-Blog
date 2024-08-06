@@ -19,7 +19,7 @@
   font-weight: bold;
   flex-basis: 100%;
   margin: 15px 0;
-  line-height: 1.3; 
+  line-height: 1.3;
 }
 
 .blog-info span {
@@ -45,6 +45,17 @@
   text-align: justify;
   font-size: 17px;
   line-height: 1.7;
+}
+
+blockquote {
+  background-color: #c2cbd269;
+  padding: 5px 20px;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+h2 {
+  margin-top: 50px;
 }
 
 @media screen and (max-width: 1080px) {

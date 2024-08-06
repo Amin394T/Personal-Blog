@@ -7,17 +7,17 @@ function Content({ blogs, currentBlog, setSearchWord }) {
   const blogData = blogs.find((blog) => blog.path == currentBlog);
   const { data, loading, error } = useFetch(`./markdown/${blogData?.path || "_welcome"}.md`);
   
-  if (error || currentBlog && (!data || !blogData))
-    return (<div className="error blog"> <div>&#x2716;</div> حدث عطب تقني ! </div>);
   if (loading)
     return (<div className="spinner blog"> <div></div> </div>);
+  if (error || currentBlog && (!data || !blogData))
+    return (<div className="error blog"> <div>&#x2716;</div> حدث عطب تقني ! </div>);
   
-  document.title = blogData?.title || data.split('\n')[0].slice(2);
+  document.title = blogData?.title || data.split("\n")[0].slice(2);
 
   let handleSearch = (query) => {
     setSearchWord(query.toLowerCase());
-    history.pushState({}, '', window.location.pathname);
-  }
+    history.pushState({}, "", window.location.pathname);
+  };
 
   return (
     currentBlog ?
