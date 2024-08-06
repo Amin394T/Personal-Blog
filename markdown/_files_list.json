@@ -5,8 +5,7 @@
     "title": "The Last Title",
     "author": "Writer 3",
     "date": "2021-01-19",
-    "tags": ["Topic 6", "Topic 1", "Topic 3"],
-    "description": "Morbi placerat congue libero, sed rhoncus sem interdum a."
+    "tags": ["Topic 6", "Topic 1", "Topic 3"]
   },
   {
     "path": "this_is_a_placeholder_title",
@@ -14,8 +13,7 @@
     "title": "This is a Placeholder Title",
     "author": "Writer 7",
     "date": "2023-06-27",
-    "tags": ["Topic 2", "Topic 6"],
-    "description": "Curabitur mi ligula, luctus quis tincidunt et, condimentum non erat."
+    "tags": ["Topic 2", "Topic 6"]
   },
   {
     "path": "yet_another_placeholder",
@@ -23,8 +21,7 @@
     "title": "Yet Another Placeholder",
     "author": "Writer 3",
     "date": "2022-11-08",
-    "tags": ["Topic 2", "Topic 3", "Topic 7"],
-    "description": "Donec vel ipsum scelerisque, varius mi eget, ullamcorper justo."
+    "tags": ["Topic 2", "Topic 3", "Topic 7"]
   },
   {
     "path": "generic_chain_of_characters",
@@ -32,8 +29,7 @@
     "title": "Generic Chain of Characters",
     "author": "Writer 8",
     "date": "2024-04-01",
-    "tags": ["Topic 8", "Topic 1", "Topic 7", "Topic 5"],
-    "description": "Aliquam pharetra a lectus id cursus. Nunc cursus eget turpis auctor rhoncus."
+    "tags": ["Topic 8", "Topic 1", "Topic 7", "Topic 5"]
   },
   {
     "path": "this_is_the_title",
@@ -41,8 +37,7 @@
     "title": "This is the Title",
     "author": "Writer 1",
     "date": "2019-06-01",
-    "tags": ["Topic 5"],
-    "description": "Nam et condimentum lacus. Phasellus finibus porttitor purus a imperdiet."
+    "tags": ["Topic 5"]
   },
   {
     "path": "some_random_title",
@@ -50,8 +45,7 @@
     "title": "Some Random Title",
     "author": "Writer 2",
     "date": "2020-10-22",
-    "tags": ["Topic 2", "Topic 8", "Topic 6"],
-    "description": "Ut aliquet lectus eros, eget pharetra nisi pulvinar suscipit."
+    "tags": ["Topic 2", "Topic 8", "Topic 6"]
   },
   {
     "path": "a_random_blog",
@@ -59,7 +53,6 @@
     "title": "A Random Blog",
     "author": "Writer 3",
     "date": "2022-11-30",
-    "tags": ["Topic 8", "Topic 2"],
-    "description": "Duis et metus sit amet dui tincidunt eleifend. In hac habitasse platea dictumst. Donec ut commodo eros."
+    "tags": ["Topic 8", "Topic 2"]
   }
 ]
