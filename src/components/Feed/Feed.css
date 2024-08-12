@@ -1,11 +1,12 @@
 .feed {
-  margin: 20px;
-  height: fit-content;
+  /* height: fit-content; */
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 1400px;
+  margin: 120px auto 30px;
+  padding: 0 15px;
 }
 
 .feed-blog {
@@ -46,7 +47,7 @@
 @media screen and (max-width: 1080px) {
   .feed {
     gap: 20px;
-    width: auto !important;
+    /* width: auto !important; */
   }
 }
 

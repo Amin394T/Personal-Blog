@@ -1,14 +1,6 @@
 import "./Navigation.css";
-import { startTransition } from "react";
 
-function Navigation({ setCurrentBlog, searchWord, setSearchWord }) {
-
-  let handleSearch = (query) => {
-    startTransition(() => setSearchWord(query.toLowerCase()));
-    setCurrentBlog(null);
-    window.scrollTo(0, 0);
-    history.pushState({}, "", window.location.pathname);
-  };
+function Navigation({ searchWord, handleSearch }) {
   
   return (
     <div className="header">

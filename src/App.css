@@ -7,18 +7,9 @@ html,
 body,
 #root {
   margin: 0;
-  height: 100%;
   font-family: Cairo, sans-serif;
   background-color: #f5efe6;
   color: #003135;
-}
-
-.separator {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-wrap: wrap;
-  padding-top: 100px;
 }
 
 .spinner {
@@ -65,12 +56,5 @@ body,
 
   100% {
     transform: rotate(360deg);
-  }
-}
-
-
-@media screen and (max-width: 1080px) {
-  .separator {
-    flex-direction: column;
   }
 }

@@ -10,6 +10,7 @@
   z-index: 1;
   width: 100vw;
   box-sizing: border-box;
+  top: 0;
 }
 
 .header-logo {
@@ -34,7 +35,7 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   width: 25%;
   height: 20px;
-  font-family: Cairo, sans-serif
+  font-family: Cairo, sans-serif;
 }
 
 @media screen and (max-width: 1080px) {
