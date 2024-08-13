@@ -1,9 +1,0 @@
-# Welcome to my Blog!
-
-This is a simplistic blog website template that displays a list of blogs, allows searching blogs, and displays the content of a selected blog. It is adapted for both computer, tablet, and smartphone views.
-
-The default view shows a welcome message, followed by the list of all blogs sorted by date, you can return to this view from anywhere by clicking on the website logo located in the navigation bar, while the search bar on its right allows filtering blogs by title and by tags.
-
-The content section displays the current blog's title, main tags, author, and date, followed by the blog's content, and at the very bottom a list of all tags associated to this blog, which are clickable and work as search shortcuts.
-
-The feed section displays all blogs when no blog is currently selected, and only those with the same main tag when a blog is displayed, with a maximum of 6. The feed is always sorted by date, and is affected by the search feature. It contains blog cards that display a blog's thumbnail, main tag, and title.

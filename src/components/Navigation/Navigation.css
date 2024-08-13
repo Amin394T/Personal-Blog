@@ -4,7 +4,7 @@
   justify-content: center;
   background-color: #c2cbd2;
   height: 50px;
-  margin-bottom: 75px;
+  /* margin-bottom: 75px; */
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   position: fixed;
   z-index: 1;

@@ -9,6 +9,10 @@
   margin: 120px auto 30px;
 }
 
+.welcome {
+  margin-bottom: -70px !important;
+}
+
 .blog-info {
   margin-bottom: 40px;
   /* display: flex;
@@ -60,7 +64,7 @@ blockquote {
 
 @media screen and (max-width: 1080px) {
   .blog {
-    margin: 100px 30px;
+    margin: 100px 30px 30px;
     /* width: auto; */
     max-width: 100%;
   }
@@ -68,7 +72,7 @@ blockquote {
 
 @media screen and (max-width: 550px) {
   .blog {
-    margin: 90px 10px;
+    margin: 90px 10px 10px;
   }
 
   .blog-info-title {
