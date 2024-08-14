@@ -13,9 +13,9 @@ function Feed({ blogs, handleSelection, searchWord }) {
       { sortedBlogs.map((blog) => (
 
         <div className="feed-blog" onClick={() => handleSelection(blog.path)} key={blog.path}>
-          <span className="feed-blog-tag">{blog.tags[0]}</span>
-          <img className="feed-blog-thumbnail" src={`./images/${blog.image || "_placeholder.png"}`} />
-          <div className="feed-blog-title">{blog.title}</div>
+          <span>{blog.tags[0]}</span>
+          <img src={`./images/${blog.image || "_placeholder.png"}`} />
+          <div>{blog.title}</div>
         </div>
       
       )) }

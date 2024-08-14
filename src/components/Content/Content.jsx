@@ -14,22 +14,23 @@ function Content({ blogData, handleSearch }) {
   document.title = blogData?.title;
 
   return (
-    <div className="blog">
+    <>
+      <div className="blog">
+        <h1>{blogData.title}</h1>
 
-      <div className="blog-info">
-        <h1 className="blog-info-title">{blogData.title}</h1>
-        <span>📘 &nbsp;{blogData.tags[0]}</span>
-        <span>🖊️ &nbsp;{blogData.author}</span>
-        <span>🕓 &nbsp;{blogData.date}</span>
+        <div className="blog-info">  
+          <span>📘 &nbsp;{blogData.tags[0]}</span>
+          <span>🖊️ &nbsp;{blogData.author}</span>
+          <span>🕓 &nbsp;{blogData.date}</span>
+        </div>
+
+        <Markdown>{data}</Markdown>
+        
+        <span className="blog-tags">
+          { blogData.tags.map((tag) => <span key={tag} onClick={() => handleSearch(tag)}>&#35; {tag}</span>) }
+        </span>
       </div>
-
-      <div className="blog-text"> <Markdown>{data}</Markdown> </div>
-
-      <span className="blog-tags">
-        { blogData.tags.map((tag) => <span key={tag} onClick={() => handleSearch(tag)}>&#35; {tag}</span>) }
-      </span>
-    
-    </div>
+    </>
   );
 }
 

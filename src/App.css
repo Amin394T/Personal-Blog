@@ -12,24 +12,7 @@ body,
   color: #003135;
 }
 
-.spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.spinner > div {
-  width: 40px;
-  height: 40px;
-  border: 5px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  border-top-color: #003135;
-  animation: spin 1s linear infinite;
-}
-
 .error {
-  /* min-width: 320px; */
   max-width: 90%;
   padding: 0 0 16px 0 !important;
   margin: auto;
@@ -47,6 +30,22 @@ body,
 
 .error > div {
   font-size: 48px;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner > div {
+  width: 40px;
+  height: 40px;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #003135;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {

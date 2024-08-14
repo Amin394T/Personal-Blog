@@ -43,15 +43,15 @@ function App() {
   return (
     <>
       <Navigation {...{ searchWord, handleSearch }} />
-      
+
       { !currentBlog && !searchWord &&
-        <div className="blog welcome">
-          <h1 className="blog-info-title"> {welcome.heading} </h1>
-          <div className="blog-text"> {welcome.line_1} </div> <br/>
-          <div className="blog-text"> {welcome.line_2} </div> <br/>
-          <div className="blog-text"> {welcome.line_3} </div>
-        </div>
-      }
+        <div className="blog">
+          <h1> {welcome.heading} </h1>
+          <p> {welcome.line_1} </p>
+          <p> {welcome.line_2} </p>
+          <p> {welcome.line_3} </p>
+        </div> }
+
       { currentBlog && <Content {...{ blogData, handleSearch }} /> }
       { !currentBlog && <Feed {...{ blogs, handleSelection, searchWord }} /> }
     </>

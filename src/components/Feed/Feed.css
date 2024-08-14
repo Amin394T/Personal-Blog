@@ -1,12 +1,10 @@
 .feed {
-  /* height: fit-content; */
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 1400px;
-  margin: 120px auto 30px;
-  padding: 0 15px;
+  margin: 60px auto 30px;
 }
 
 .feed-blog {
@@ -14,25 +12,24 @@
   border-radius: 5px;
   background-color: #c2cbd2;
   cursor: pointer;
-  width: 240px;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.feed-blog-thumbnail {
+.feed-blog > img {
   width: 240px;
   height: 160px;
   border-radius: 5px 5px 0 0;
 }
 
-.feed-blog-title {
+.feed-blog > div {
   font-size: 16px;
   font-weight: bold;
   padding: 0 5px 5px;
   text-align: center;
 }
 
-.feed-blog-tag {
+.feed-blog > span {
   background-color: #003135;
   padding: 0 5px;
   border-radius: 5px 0 0 5px;
@@ -47,16 +44,11 @@
 @media screen and (max-width: 1080px) {
   .feed {
     gap: 20px;
-    /* width: auto !important; */
   }
 }
 
 @media screen and (max-width: 550px) {
-  .feed-blog {
-    width: 300px;
-  }
-
-  .feed-blog-thumbnail {
+  .feed-blog > img {
     width: 300px;
     height: 200px;
   }
