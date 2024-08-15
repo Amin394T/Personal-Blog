@@ -2,7 +2,7 @@ import "./App.css";
 import Navigation from "./components/Navigation/Navigation";
 import Content from "./components/Content/Content";
 import Feed from "./components/Feed/Feed";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import useFetch from "./utilities/hooks/useFetch";
 
 function App() {
@@ -11,26 +11,49 @@ function App() {
 
   useEffect(() => {
     const path = new URLSearchParams(window.location.search).get("blog");
-    if(path) setCurrentBlog(path);
+    if (path) setCurrentBlog(path);
   }, []);
-  
-  if(searchWord) document.title = "جاري البحث ...";
+
+  const welcome = JSON.parse(useFetch("./markdown/_welcome.json").data);
 
   const { data, loading, error } = useFetch("./markdown/_files_list.json");
+  if (loading)
+    return (<div className="spinner"> <div></div> </div>);
   if (error)
     return (<div className="error"> <div>&#x2716;</div> حدث عطب تقني ! </div>);
-  if(loading)
-    return (<div className="spinner"> <div></div> </div>);
-  
+
   const blogs = JSON.parse(data);
+  const blogData = blogs.find((blog) => blog.path == currentBlog);
+
+  let handleSearch = (query) => {
+    startTransition(() => setSearchWord(query.toLowerCase()));
+    setCurrentBlog(null);
+    window.scrollTo(0, 0);
+    history.pushState({}, "", window.location.pathname);
+    document.title = welcome.name;
+  };
+
+  let handleSelection = (path) => {
+    setCurrentBlog(path);
+    setSearchWord("");
+    window.scrollTo(0, 0);
+    history.pushState({ blog: path }, "", `?blog=${path}`);
+  };
 
   return (
     <>
-      <Navigation {...{ setCurrentBlog, searchWord, setSearchWord }} />
-      <div className="separator">
-        { !searchWord && <Content {...{ blogs, currentBlog, setSearchWord }} /> }
-        <Feed {...{ blogs, currentBlog, setCurrentBlog, searchWord, setSearchWord }} />
-      </div>
+      <Navigation {...{ searchWord, handleSearch }} />
+
+      { !currentBlog && !searchWord &&
+        <div className="blog">
+          <h1> {welcome.heading} </h1>
+          <p> {welcome.line_1} </p>
+          <p> {welcome.line_2} </p>
+          <p> {welcome.line_3} </p>
+        </div> }
+
+      { currentBlog && <Content {...{ blogData, handleSearch }} /> }
+      { !currentBlog && <Feed {...{ blogs, handleSelection, searchWord }} /> }
     </>
   );
 }
