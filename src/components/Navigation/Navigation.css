@@ -1,4 +1,4 @@
-.header {
+.navigation {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,9 +8,10 @@
   position: sticky;
   z-index: 1;
   top: 0;
+  margin-bottom: 80px;
 }
 
-.header-logo {
+.navigation-logo {
   width: 160px;
   height: 80px;
   align-self: baseline;
@@ -23,7 +24,7 @@
   right: 40px;
 }
 
-.header-search {
+.navigation-search {
   padding: 5px 10px;
   border-radius: 10px;
   background-color: #f5efe6;
@@ -36,16 +37,17 @@
 }
 
 @media screen and (max-width: 1080px) {
-  .header {
+  .navigation {
     height: 40px;
     justify-content: space-between;
     padding: 0px 15px;
+    margin-bottom: 60px;
   }
-  .header-search {
+  .navigation-search {
     width: 35%;
     height: 14px;
   }
-  .header-logo {
+  .navigation-logo {
     width: 120px;
     height: 60px;
     position: relative;
