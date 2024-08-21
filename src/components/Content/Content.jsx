@@ -7,18 +7,17 @@ function Content({ blogData, handleSearch }) {
   const { data, loading, error } = useFetch(`./markdown/${blogData?.path}.md`);
   
   if (loading)
-    return (<div className="spinner blog"> <div></div> </div>);
+    return (<div className="spinner content"> <div></div> </div>);
   if (error || !blogData)
-    return (<div className="error blog"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
+    return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
   document.title = blogData?.title;
 
   return (
-    <>
-      <div className="blog">
+      <div className="content">
         <h1>{blogData.title}</h1>
 
-        <div className="blog-info">  
+        <div className="content-info">  
           <span>📘 &nbsp;{blogData.tags[0]}</span>
           <span>🖊️ &nbsp;{blogData.author}</span>
           <span>🕓 &nbsp;{blogData.date}</span>
@@ -26,11 +25,10 @@ function Content({ blogData, handleSearch }) {
 
         <Markdown>{data}</Markdown>
         
-        <span className="blog-tags">
+        <span className="content-tags">
           { blogData.tags.map((tag) => <span key={tag} onClick={() => handleSearch(tag)}>&#35; {tag}</span>) }
         </span>
       </div>
-    </>
   );
 }
 

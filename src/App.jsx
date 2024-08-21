@@ -45,7 +45,7 @@ function App() {
       <Navigation {...{ searchWord, handleSearch }} />
 
       { !currentBlog && !searchWord &&
-        <div className="blog">
+        <div className="content">
           <h1> {welcome.heading} </h1>
           <p> {welcome.line_1} </p>
           <p> {welcome.line_2} </p>

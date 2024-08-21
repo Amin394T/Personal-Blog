@@ -5,6 +5,7 @@
   justify-content: center;
   max-width: 1400px;
   margin: 60px auto 30px;
+  padding: 0 20px;
 }
 
 .feed-blog {
@@ -14,11 +15,12 @@
   cursor: pointer;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 300px;
 }
 
 .feed-blog > img {
-  width: 240px;
-  height: 160px;
+  width: 300px;
+  aspect-ratio: 3/2;
   border-radius: 5px 5px 0 0;
 }
 
@@ -42,14 +44,23 @@
 }
 
 @media screen and (max-width: 1080px) {
-  .feed {
-    gap: 20px;
+  .feed-blog,
+  .feed-blog > img {
+    width: 40vw;
+    max-width: 350px;
+    min-width: 240px;
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 560px) {
+  .feed {
+    margin-top: 40px;
+  }
+
+  .feed-blog,
   .feed-blog > img {
-    width: 300px;
-    height: 200px;
+    width: 75vw;
+    max-width: 350px;
+    min-width: 300px;
   }
 }
