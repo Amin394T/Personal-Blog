@@ -22,11 +22,18 @@
   line-height: 1.7;
 }
 
+.content a {
+  font-weight: bold;
+  color: #0080a8;
+  text-decoration: none;
+}
+
 .content blockquote {
   background-color: #c2cbd269;
   padding: 5px 20px;
   margin: 10px;
   border-radius: 15px;
+  text-align: justify;
 }
 
 .content-info {
@@ -79,12 +86,13 @@
   }
 
   .content ul {
-    padding-right: 25px;
+    padding-right: 15px;
   }
 
   .content blockquote {
     padding: 1px 15px;
     margin: 10px 0;
+    font-size: 14px;
   }
 
   .content-info span {
