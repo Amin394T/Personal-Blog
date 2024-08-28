@@ -7,7 +7,7 @@ function Navigation({ searchWord, handleSearch }) {
       <img className="navigation-logo" src="./images/_logo.png" onClick={() => handleSearch("")} />
       <input
         className="navigation-search" value={searchWord} placeholder="🔍  Search ..."
-        onChange={(event) => handleSearch(event.target.value)} autoFocus
+        onChange={(event) => handleSearch(event.target.value)}
       />
     </div>
   );

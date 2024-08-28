@@ -3,7 +3,7 @@ import Navigation from "./components/Navigation/Navigation";
 import Content from "./components/Content/Content";
 import Feed from "./components/Feed/Feed";
 import { startTransition, useEffect, useState } from "react";
-import useFetch from "./utilities/hooks/useFetch";
+import useFetch from "./utilities/useFetch";
 
 function App() {
   const [currentBlog, setCurrentBlog] = useState(null);
@@ -16,10 +16,10 @@ function App() {
 
   const welcome = JSON.parse(useFetch("./markdown/_welcome.json").data);
 
-  const { data, loading, error } = useFetch("./markdown/_files_list.json");
-  if (loading)
+  const { data, status } = useFetch("./markdown/_files_list.json");
+  if (status == "loading")
     return (<div className="spinner"> <div></div> </div>);
-  if (error)
+  if (status == "error")
     return (<div className="error"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
   const blogs = JSON.parse(data);
