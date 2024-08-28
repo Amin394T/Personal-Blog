@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     const path = new URLSearchParams(window.location.search).get("blog");
     if (path) setCurrentBlog(path);
+    window.onpopstate = () => setCurrentBlog(null);
   }, []);
 
   const welcome = JSON.parse(useFetch("./markdown/_welcome.json").data);
