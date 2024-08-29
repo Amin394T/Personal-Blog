@@ -2,20 +2,19 @@ import "./App.css";
 import Navigation from "./components/Navigation/Navigation";
 import Content from "./components/Content/Content";
 import Feed from "./components/Feed/Feed";
-import { startTransition, useEffect, useState } from "react";
+import { startTransition, useState } from "react";
 import useFetch from "./utilities/useFetch";
 
 function App() {
-  const [currentBlog, setCurrentBlog] = useState(null);
+  const [currentBlog, setCurrentBlog] = useState(new URLSearchParams(window.location.search).get("blog"));
   const [searchWord, setSearchWord] = useState("");
 
-  useEffect(() => {
-    const path = new URLSearchParams(window.location.search).get("blog");
-    if (path) setCurrentBlog(path);
-    window.addEventListener('popstate', () => setCurrentBlog(null));
-  }, []);
-
   const welcome = JSON.parse(useFetch("./markdown/_welcome.json").data);
+  
+  window.onpopstate = () => {
+    setCurrentBlog(new URLSearchParams(window.location.search).get("blog"));
+    document.title = welcome.name;
+  };
 
   const { data, status } = useFetch("./markdown/_files_list.json");
   if (status == "loading")
