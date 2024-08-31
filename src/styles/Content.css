@@ -47,7 +47,9 @@
 
 .content-tags {
   margin-top: 40px;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .content-tags span {
@@ -56,9 +58,7 @@
   border-radius: 5px;
   color: #f5efe6;
   font-size: 11px;
-  margin-left: 10px;
   cursor: pointer;
-  text-wrap: nowrap;
 }
 
 @media screen and (max-width: 1080px) {
