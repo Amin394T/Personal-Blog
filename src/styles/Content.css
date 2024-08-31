@@ -58,6 +58,7 @@
   font-size: 11px;
   margin-left: 10px;
   cursor: pointer;
+  text-wrap: nowrap;
 }
 
 @media screen and (max-width: 1080px) {
@@ -69,6 +70,7 @@
 @media screen and (max-width: 560px) {
   .content {
     margin: 0 10px 10px;
+    padding: 15px;
   }
 
   .content h1 {

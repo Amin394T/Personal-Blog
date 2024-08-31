@@ -1,9 +1,9 @@
-import "./App.css";
-import Navigation from "./components/Navigation/Navigation";
-import Content from "./components/Content/Content";
-import Feed from "./components/Feed/Feed";
+import "../styles/App.css";
+import Navigation from "./Navigation";
+import Content from "./Content";
+import Feed from "./Feed";
 import { startTransition, useState } from "react";
-import useFetch from "./utilities/useFetch";
+import useFetch from "../utilities/useFetch";
 
 function App() {
   const [currentBlog, setCurrentBlog] = useState(new URLSearchParams(window.location.search).get("blog"));

@@ -1,4 +1,4 @@
-import "./Navigation.css";
+import "../styles/Navigation.css";
 
 function Navigation({ searchWord, handleSearch }) {
   

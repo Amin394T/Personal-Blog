@@ -1,5 +1,5 @@
-import "./Content.css";
-import useFetch from "../../utilities/useFetch";
+import "../styles/Content.css";
+import useFetch from "../utilities/useFetch";
 import Markdown from "react-markdown";
 
 function Content({ blogData, handleSearch }) {
