@@ -1,4 +1,4 @@
-import "./Feed.css";
+import "../styles/Feed.css";
 
 function Feed({ blogs, handleSelection, searchWord }) {
 

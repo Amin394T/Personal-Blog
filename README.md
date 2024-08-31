@@ -15,7 +15,7 @@ The feed section displays all blogs sorted by date, and is affected by the searc
 
 This is a lightweight React client-side rendered single page application, where the source of data is static markdown files. It is created with Vite, no TypeScript used, the only extra library is React-Markdown for the purpose of handling Markdown conversion to HTML.
 
-The application is divided into 3 components (described previously), there is no real page navigation, hence the abscence of a router, everything is in one page, this is handled through states. The application does however read and write the blog ID in the URL, this is to allow sharing specific blogs' links.
+The application is divided into 3 components (described previously), there is no real page navigation, hence the abscence of a router, everything is in one page, this is handled through states. The application does however read and write the blog ID in the URL, this is to allow sharing specific blogs' links, and using the browser's backward and forward buttons.
 
 There are 2 state variables, one holding the ID of the currently selected blog, and the other holding the search keywords, they are both present at the root component for easier state sharing between components, no state manager was used since there are only 2 levels in the component tree and only 2 states.
 
