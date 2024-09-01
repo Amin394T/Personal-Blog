@@ -6,7 +6,7 @@ function Feed({ blogs, handleSelection, searchWord }) {
       (blog.tags.some(tag => tag.toLowerCase().includes(searchWord))) ||
       (blog.title.toLowerCase().includes(searchWord))
   );
-  const sortedBlogs = filteredBlogs.sort((blog1, blog2) => new Date(blog1.date) - new Date(blog2.date));
+  const sortedBlogs = filteredBlogs.sort((blog1, blog2) => new Date(blog2.date) - new Date(blog1.date));
 
   return (
     <div className="feed">
