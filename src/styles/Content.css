@@ -36,6 +36,10 @@
   text-align: justify;
 }
 
+.content hr {
+  color: #c2cbd2;
+}
+
 .content-info {
   margin-bottom: 40px;
 }

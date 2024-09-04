@@ -19,11 +19,11 @@ function App() {
   const { data, status } = useFetch("./markdown/_files_list.json");
   if (status == "loading")
     return (<div className="spinner"> <div></div> </div>);
-  if (status == "error")
+  if (status == "error" || !data)
     return (<div className="error"> <div>&#x2716;</div> حدث عطب تقني ! </div>);
 
-  const blogs = JSON.parse(data);
-  const blogData = blogs.find((blog) => blog.path == currentBlog);
+  const blogsList = JSON.parse(data);
+  const blogData = blogsList.find((blog) => blog.path == currentBlog);
 
   let handleSearch = (query) => {
     startTransition(() => setSearchWord(query.toLowerCase()));
@@ -53,7 +53,7 @@ function App() {
         </div> }
 
       { currentBlog && <Content {...{ blogData, handleSearch }} /> }
-      { !currentBlog && <Feed {...{ blogs, handleSelection, searchWord }} /> }
+      { !currentBlog && <Feed {...{ blogsList, handleSelection, searchWord }} /> }
     </>
   );
 }
