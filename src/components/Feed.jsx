@@ -1,8 +1,8 @@
 import "../styles/Feed.css";
 
-function Feed({ blogs, handleSelection, searchWord }) {
+function Feed({ blogsList, handleSelection, searchWord }) {
 
-  const filteredBlogs = blogs.filter((blog) => 
+  const filteredBlogs = blogsList.filter((blog) => 
       (blog.tags.some(tag => tag.toLowerCase().includes(searchWord))) ||
       (blog.title.toLowerCase().includes(searchWord))
   );
