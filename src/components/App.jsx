@@ -52,8 +52,10 @@ function App() {
           <p> {welcome.line_3} </p>
         </div> }
 
-      { currentBlog && <Content {...{ blogData, handleSearch }} /> }
-      { !currentBlog && <Feed {...{ blogsList, handleSelection, searchWord }} /> }
+      { currentBlog
+        ? <Content {...{ blogData, handleSearch }} />
+        : <Feed {...{ blogsList, handleSelection, searchWord }} />
+      }
     </>
   );
 }
