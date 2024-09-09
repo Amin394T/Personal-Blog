@@ -4,7 +4,7 @@ import Markdown from "react-markdown";
 
 function Content({ blogData, handleSearch }) {
 
-  const { data, status } = useFetch(`./markdown/${blogData.path}.md`);
+  const { data, status } = useFetch(`./markdown/${blogData?.path}.md`);
   if (status == "loading")
     return (<div className="spinner content"> <div></div> </div>);
   if (status == "error" || !blogData)
