@@ -10,7 +10,7 @@ function Content({ blogData, handleSearch }) {
   if (status == "error" || !blogData)
     return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
-  document.title = blogData.title;
+  document.title = `Reading: "${blogData.title}"`;
 
   return (
       <div className="content">

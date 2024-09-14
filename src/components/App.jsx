@@ -7,13 +7,15 @@ import useFetch from "../utilities/useFetch";
 
 function App() {
   const [currentBlog, setCurrentBlog] = useState(new URLSearchParams(window.location.search).get("blog"));
-  const [searchWord, setSearchWord] = useState("");
+  const [searchWord, setSearchWord] = useState(new URLSearchParams(window.location.search).get("search") ?? "");
 
   const welcome = JSON.parse(useFetch("./markdown/_welcome.json").data);
+  //useEffect
+  if (!searchWord && !currentBlog) document.title = welcome.name;
   
   window.onpopstate = () => {
     setCurrentBlog(new URLSearchParams(window.location.search).get("blog"));
-    document.title = welcome.name;
+    setSearchWord(new URLSearchParams(window.location.search).get("search") ?? "");
   };
 
   const { data, status } = useFetch("./markdown/_files_list.json");
@@ -29,7 +31,9 @@ function App() {
     startTransition(() => setSearchWord(query.toLowerCase()));
     setCurrentBlog(null);
     window.scrollTo(0, 0);
-    history.pushState({}, "", window.location.pathname);
+    searchWord
+      ? history.replaceState({ query }, "", `?search=${query}`)
+      : history.pushState({ query }, "", `?search=${query}`);
     document.title = welcome.name;
   };
 
@@ -37,7 +41,7 @@ function App() {
     setCurrentBlog(path);
     setSearchWord("");
     window.scrollTo(0, 0);
-    history.pushState({ blog: path }, "", `?blog=${path}`);
+    history.pushState({ path }, "", `?blog=${path}`);
   };
 
   return (
