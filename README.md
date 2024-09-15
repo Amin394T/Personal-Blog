@@ -13,16 +13,16 @@ The feed section displays all blogs sorted by date, and is affected by the searc
 
 ## TECHNICAL SPECIFICATION
 
-This is a lightweight React client-side rendered single page application, where the source of data is static markdown files. It is created with Vite, no TypeScript used, the only extra library is React-Markdown for the purpose of handling Markdown conversion to HTML.
+This is a lightweight React client-side rendered single page application, where the source of data is static markdown files. It is created with the help of Vite, no TypeScript used, the only extra library is React-Markdown for the purpose of handling Markdown conversion to HTML.
 
-The application is divided into 3 components (described previously), there is no real page navigation, hence the abscence of a router, everything is in one page, this is handled through states. The application does however read and write the blog ID in the URL, this is to allow sharing specific blogs' links.
+The application is divided into 3 components (described previously), Routing has been handled through the native browser history API, the application reads and writes the blog ID and search keyword in the URL, this is to allow sharing links to specific blogs or search results, and using the browser's backward and forward buttons.
 
 There are 2 state variables, one holding the ID of the currently selected blog, and the other holding the search keywords, they are both present at the root component for easier state sharing between components, no state manager was used since there are only 2 levels in the component tree and only 2 states.
 
 
 ## USAGE INSTRUCTIONS
 
-Use the version found in the build branch. Blogs can be added to the /markdown folder as markdown files, to make it appear in the application an entry containing the blog's metadata should be added in the _files_list.json file present in the same folder (copy and modify an existing entry). In the same folder you can also modify the welcome message by editing the _welcome.json file, 
+Use the version found in the build branch. Blogs can be added to the /markdown folder as markdown files, to make it appear in the application an entry containing the blog's metadata should be added in the _files_list.json file present in the same folder (copy and modify an existing entry). In the same folder you can also modify the welcome message and blog title by editing the _welcome.json file.
 
 Thumbnail images can be added in the /images folder, it should preferably have a 3:2 aspect ratio or close. In the same folder you can also modify the header logo (_logo.png, 2:1 aspect ratio), tab icon (_head.png, 1:1 aspect ratio), and placeholder image (_placeholder.png, 3:2 aspect ratio).
 
