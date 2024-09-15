@@ -2,8 +2,8 @@ import "../styles/App.css";
 import Navigation from "./Navigation";
 import Content from "./Content";
 import Feed from "./Feed";
-import { startTransition, useState } from "react";
 import useFetch from "../utilities/useFetch";
+import { startTransition, useState } from "react";
 
 function App() {
   const [currentBlog, setCurrentBlog] = useState(new URLSearchParams(window.location.search).get("blog"));
@@ -28,13 +28,13 @@ function App() {
   if (!searchWord && !currentBlog) document.title = welcome.name;
 
   let handleSearch = (query) => {
-    startTransition(() => setSearchWord(query.toLowerCase()));
+    query = query.toLowerCase();
+    startTransition(() => setSearchWord(query));
     setCurrentBlog(null);
     window.scrollTo(0, 0);
     searchWord
       ? history.replaceState({ query }, "", `?search=${query}`)
       : history.pushState({ query }, "", `?search=${query}`);
-    document.title = welcome.name;
   };
 
   let handleSelection = (path) => {

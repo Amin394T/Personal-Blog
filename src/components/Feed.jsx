@@ -1,7 +1,7 @@
 import "../styles/Feed.css";
 
 function Feed({ blogsList, handleSelection, searchWord }) {
-  document.title = `Searching: "${searchWord}"`;
+  if (searchWord) document.title = `Searching: "${searchWord}"`;
 
   const filteredBlogs = blogsList.filter((blog) => 
       (blog.tags.some(tag => tag.toLowerCase().includes(searchWord))) ||
