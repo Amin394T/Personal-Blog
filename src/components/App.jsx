@@ -8,10 +8,6 @@ import useFetch from "../utilities/useFetch";
 function App() {
   const [currentBlog, setCurrentBlog] = useState(new URLSearchParams(window.location.search).get("blog"));
   const [searchWord, setSearchWord] = useState(new URLSearchParams(window.location.search).get("search") ?? "");
-
-  const welcome = JSON.parse(useFetch("./markdown/_welcome.json").data);
-  //useEffect
-  if (!searchWord && !currentBlog) document.title = welcome.name;
   
   window.onpopstate = () => {
     setCurrentBlog(new URLSearchParams(window.location.search).get("blog"));
@@ -19,13 +15,17 @@ function App() {
   };
 
   const { data, status } = useFetch("./markdown/_files_list.json");
-  if (status == "loading")
+  const welcome = JSON.parse(useFetch("./markdown/_welcome.json").data);
+  
+  if (status == "loading" || !welcome)
     return (<div className="spinner"> <div></div> </div>);
   if (status == "error" || !data)
     return (<div className="error"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
   const blogsList = JSON.parse(data);
   const blogData = blogsList.find((blog) => blog.path == currentBlog);
+
+  if (!searchWord && !currentBlog) document.title = welcome.name;
 
   let handleSearch = (query) => {
     startTransition(() => setSearchWord(query.toLowerCase()));
