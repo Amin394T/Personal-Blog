@@ -1,6 +1,6 @@
 [Click here for a demo!](https://amin394t.github.io/Personal-Blog/)
 
-Use the version found in the build branch. Blogs can be added to the /markdown folder as markdown files, to make it appear in the application an entry containing the blog's metadata should be added in the _files_list.json file present in the same folder (copy and modify an existing entry). In the same folder you can also modify the welcome message by editing the _welcome.json file,
+Use the version found in the build branch. Blogs can be added to the /markdown folder as markdown files, to make it appear in the application an entry containing the blog's metadata should be added in the _files_list.json file present in the same folder (copy and modify an existing entry). In the same folder you can also modify the welcome message and blog title by editing the _welcome.json file.
 
 Thumbnail images can be added in the /images folder, it should preferably have a 3:2 aspect ratio or close. In the same folder you can also modify the header logo (_logo.png, 2:1 aspect ratio), tab icon (_head.png, 1:1 aspect ratio), and placeholder image (_placeholder.png, 3:2 aspect ratio).
 
