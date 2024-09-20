@@ -32,7 +32,7 @@ function App() {
     startTransition(() => setSearchWord(query));
     setCurrentBlog(null);
     window.scrollTo(0, 0);
-    searchWord && query
+    (searchWord && query) || (!currentBlog && !searchWord && !query)
       ? history.replaceState({ query }, "", `?search=${query}`)
       : history.pushState({ query }, "", `?search=${query}`);
   };
