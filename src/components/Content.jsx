@@ -1,4 +1,5 @@
 import "../styles/Content.css";
+import Comment from "./Comment";
 import useFetch from "../utilities/useFetch";
 import Markdown from "react-markdown";
 
@@ -13,21 +14,27 @@ function Content({ blogData, handleSearch }) {
   document.title = `Reading: "${blogData.title}"`;
 
   return (
-    <div className="content">
-      <h1>{blogData.title}</h1>
+    <>
+      <div className="content">
+        <h1>{blogData.title}</h1>
 
-      <div className="content-info">  
-        <span>📘 &nbsp;{blogData.tags[0]}</span>
-        <span>🖊️ &nbsp;{blogData.author}</span>
-        <span>🕓 &nbsp;{blogData.date}</span>
+        <div className="content-info">  
+          <span>📘 &nbsp;{blogData.tags[0]}</span>
+          <span>🖊️ &nbsp;{blogData.author}</span>
+          <span>🕓 &nbsp;{blogData.date}</span>
+        </div>
+
+        <Markdown>{data}</Markdown>
+        
+        <span className="content-tags">
+          { blogData.tags.map((tag) => <span key={tag} onClick={() => handleSearch(tag)}>&#35; {tag}</span>) }
+        </span>
       </div>
 
-      <Markdown>{data}</Markdown>
-      
-      <span className="content-tags">
-        { blogData.tags.map((tag) => <span key={tag} onClick={() => handleSearch(tag)}>&#35; {tag}</span>) }
-      </span>
-    </div>
+      <div className="comments-list">
+          { [1, 2, 3].map((index) => <Comment key={index}/>) }
+      </div>
+    </>
   );
 }
 
