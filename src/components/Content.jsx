@@ -32,7 +32,7 @@ function Content({ blogData, handleSearch }) {
       </div>
 
       <div className="comments-list">
-          { [1, 2, 3].map((index) => <Comment key={index}/>) }
+          { [1, 2, 3].map((index) => <Comment key={index} id={2}/>) }
       </div>
     </>
   );
