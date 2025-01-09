@@ -1,5 +1,5 @@
 import "../styles/Content.css";
-import Comment from "./Comment";
+import Comments from "./Comments";
 import useFetch from "../utilities/useFetch";
 import Markdown from "react-markdown";
 
@@ -31,8 +31,8 @@ function Content({ blogData, handleSearch }) {
         </span>
       </div>
 
-      <div className="comments-list">
-          { [1, 2, 3].map((index) => <Comment key={index} id={2}/>) }
+      <div className="content-comments">
+          <Comments {...{id: blogData?.path}} />
       </div>
     </>
   );
