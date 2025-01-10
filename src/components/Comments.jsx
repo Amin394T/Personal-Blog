@@ -13,10 +13,13 @@ function Comments({ id }) {
   
   return (
     <>
-      {comments.map((comment) => 
-        <div className="comment content" key={comment.id}>
-          <div className="comment-user">💬 &nbsp; {comment.user}</div>
-          <div className="comment-text">{comment.content}</div>
+      {comments.map((comment) =>
+        <div className="comments" key={comment.id}>
+          <div className="comment content">
+            <div className="comment-user">💬 &nbsp; {comment.user}</div>
+            <div className="comment-text">{comment.content}</div>
+          </div>
+          <Comments {...{id: comment.id}} />
         </div>
       )}
     </>
