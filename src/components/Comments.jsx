@@ -15,7 +15,7 @@ function Comments({ id }) {
     <>
       {comments.map((comment) =>
         <div className="comments" key={comment.id}>
-          <div className="comment content">
+          <div className="comment">
             <div className="comment-user">💬 &nbsp; {comment.user}</div>
             <div className="comment-text">{comment.content}</div>
           </div>

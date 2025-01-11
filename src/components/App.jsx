@@ -4,6 +4,7 @@ import Content from "./Content";
 import Feed from "./Feed";
 import useFetch from "../utilities/useFetch";
 import { startTransition, useState } from "react";
+import Comments from "./Comments";
 
 function App() {
   const [currentBlog, setCurrentBlog] = useState(new URLSearchParams(window.location.search).get("blog"));
@@ -57,7 +58,12 @@ function App() {
         </div> }
 
       { currentBlog
-        ? <Content {...{ blogData, handleSearch }} />
+        ? <>
+            <Content {...{ blogData, handleSearch }} />
+            <div className="comment-section">
+              <Comments {...{id: blogData?.path}} />
+            </div>
+          </>
         : <Feed {...{ blogsList, handleSelection, searchWord }} />
       }
     </>
