@@ -60,9 +60,9 @@ function App() {
       { currentBlog
         ? <>
             <Content {...{ blogData, handleSearch }} />
-            <div className="comment-section">
+            
               <Comments {...{id: blogData?.path}} />
-            </div>
+            
           </>
         : <Feed {...{ blogsList, handleSelection, searchWord }} />
       }

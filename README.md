@@ -33,3 +33,4 @@ You can delete the mock-up blogs and their images, and remove their entries from
 + CRUD comment 
 - sort comments
 - separate comment created/edited date
++ prevent API call for each comment
