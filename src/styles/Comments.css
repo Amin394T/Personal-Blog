@@ -21,8 +21,7 @@
 }
 
 .comment-editor > textarea {
-  font-size: 14px;
-  border: 1px solid rgb(204, 204, 204);
+  font-size: 15px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
   resize: none;
@@ -30,6 +29,8 @@
   padding: 18px 18px 0;
   overflow: hidden;
   border: 2px solid #003135;
+  font-family: inherit;
+  height: 47px;
 }
 
 .comment-editor > button {

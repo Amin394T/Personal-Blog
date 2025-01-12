@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import "../styles/Comments.css";
 import useFetch from "../utilities/useFetch";
+import useSubmit from "../utilities/useSubmit";
 
 function Comment({ id }) {
   const { data, status } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`);
@@ -27,7 +28,8 @@ function Comment({ id }) {
 
 function CommentSection({ id }) {
   const textareaRef = useRef();
-
+  const { submitData, status } = useSubmit(`${import.meta.env.VITE_API_URL}/messages`);
+  
   let handleStretchArea = () => {
     const area = textareaRef.current;
     area.style.height = "0";
@@ -40,12 +42,32 @@ function CommentSection({ id }) {
     handleStretchArea();
   };
 
+  let handleSubmitComment = async () => {
+    const area = textareaRef.current;
+    const content = area.value.trim();
+    if (!content) return;
+    
+    await submitData({
+      username: "RandomGuy69",
+      password: "pwd",
+      content,
+      parent: id
+    });
+    if (status == "complete") handleClearComment();
+  };
+  
+  console.log(status)
+  if (status == "loading")
+    return (<div className="spinner content"> <div></div> </div>);
+  if (status == "error")
+    return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
+
   return (
     <div className="comment-section">
       <div className="comment-editor">
         <textarea placeholder="Write a comment..." ref={textareaRef} onChange={handleStretchArea} />
         <button onClick={handleClearComment}>Clear</button>
-        <button>Submit</button>
+        <button onClick={handleSubmitComment}>Submit</button>
       </div>
       <Comment {...{id}} />
     </div>
