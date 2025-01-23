@@ -20,7 +20,11 @@ function Comment({ id }) {
           <div className="comment-user">💬 &nbsp; {comment.user}</div>
           <div className="comment-text">{comment.content}</div>
         </div>
-        <Comment {...{id: comment.id}} />
+        {
+          new URLSearchParams(window.location.search).get("blog") == id
+          ? <Comment {...{id: comment.id}} />
+          : null
+        }
       </div>
     )
   );
@@ -28,7 +32,7 @@ function Comment({ id }) {
 
 function CommentSection({ id }) {
   const textareaRef = useRef();
-  const { submitData, status } = useSubmit(`${import.meta.env.VITE_API_URL}/messages`);
+  const { submitData, submitStatus } = useSubmit(`${import.meta.env.VITE_API_URL}/messages`);
   
   let handleStretchArea = () => {
     const area = textareaRef.current;
@@ -53,13 +57,12 @@ function CommentSection({ id }) {
       content,
       parent: id
     });
-    if (status == "complete") handleClearComment();
+    handleClearComment();
   };
   
-  console.log(status)
-  if (status == "loading")
+  if (submitStatus == "loading")
     return (<div className="spinner content"> <div></div> </div>);
-  if (status == "error")
+  if (submitStatus == "error")
     return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
   return (
