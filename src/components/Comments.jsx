@@ -1,9 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/Comments.css";
 import useFetch from "../utilities/useFetch";
 import useSubmit from "../utilities/useSubmit";
 
-function Comment({ id }) {
+function CommentDiscussion({ id }) {
   const { data, status } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`);
 
   if (status == "loading")
@@ -20,59 +20,72 @@ function Comment({ id }) {
           <div className="comment-user">💬 &nbsp; {comment.user}</div>
           <div className="comment-text">{comment.content}</div>
         </div>
-        {
-          new URLSearchParams(window.location.search).get("blog") == id
-          ? <Comment {...{id: comment.id}} />
-          : null
-        }
       </div>
     )
   );
 }
 
 function CommentSection({ id }) {
-  const textareaRef = useRef();
+  const editorRef = useRef();
   const { submitData, submitStatus } = useSubmit(`${import.meta.env.VITE_API_URL}/messages`);
+  const { data, status } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`);  
+  const [comments, setComments] = useState([]);
+  
+  useEffect(() => {
+    if (data) setComments(JSON.parse(data));
+  }, [data]);
   
   let handleStretchArea = () => {
-    const area = textareaRef.current;
-    area.style.height = "0";
-    area.style.height = area.scrollHeight + "px";
+    editorRef.current.style.height = "0";
+    editorRef.current.style.height = editorRef.current.scrollHeight + "px";
   };
 
   let handleClearComment = () => {
-    const area = textareaRef.current;
-    area.value = "";
+    editorRef.current.value = "";
     handleStretchArea();
   };
 
   let handleSubmitComment = async () => {
-    const area = textareaRef.current;
-    const content = area.value.trim();
+    const content = editorRef.current.value;
     if (!content) return;
     
-    await submitData({
+    const response = await submitData({
       username: "RandomGuy69",
       password: "pwd",
       content,
       parent: id
     });
+
+    if (response) {
+      setComments(prevComments => [...prevComments, response]);
+    }
+
     handleClearComment();
   };
   
-  if (submitStatus == "loading")
+  if (submitStatus == "loading" || status == "loading")
     return (<div className="spinner content"> <div></div> </div>);
-  if (submitStatus == "error")
+  if (submitStatus == "error" || status == "error")
     return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
   return (
     <div className="comment-section">
       <div className="comment-editor">
-        <textarea placeholder="Write a comment..." ref={textareaRef} onChange={handleStretchArea} />
+        <textarea placeholder="Write a comment..." ref={editorRef} onChange={handleStretchArea} />
         <button onClick={handleClearComment}>Clear</button>
         <button onClick={handleSubmitComment}>Submit</button>
       </div>
-      <Comment {...{id}} />
+      {
+        comments.map((comment) =>
+          <div className="comments" key={comment.id}>
+            <div className="comment">
+              <div className="comment-user">💬 &nbsp; {comment.user}</div>
+              <div className="comment-text">{comment.content}</div>
+            </div>
+            <CommentDiscussion {...{id: comment.id}} />
+          </div>
+        )
+      }
     </div>
   );
 }
