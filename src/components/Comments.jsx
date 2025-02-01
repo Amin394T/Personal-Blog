@@ -58,12 +58,12 @@ function CommentSection({ id }) {
     });
 
     if (response) setComments(prevComments => [...prevComments, response]);
-    handleClearComment();
+    if(submitStatus == "error") handleClearComment();
   };
   
-  if (submitStatus == "loading" || fetchStatus == "loading")
+  if (fetchStatus == "loading")
     return (<div className="spinner content"> <div></div> </div>);
-  if (submitStatus == "error" || fetchStatus == "error")
+  if (fetchStatus == "error")
     return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
   return (
