@@ -1,22 +1,22 @@
-import "../styles/Content.css";
+import "../styles/Article.css";
 import useFetch from "../utilities/useFetch";
 import Markdown from "react-markdown";
 
-function Content({ blogData, handleSearch }) {
+function Article({ blogData, handleSearch }) {
   const { data, status } = useFetch(`./markdown/${blogData?.path}.md`);
 
   if (status == "loading")
-    return (<div className="spinner content"> <div></div> </div>);
+    return (<div className="spinner article"> <div></div> </div>);
   if (status == "error" || !blogData)
-    return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
+    return (<div className="error article"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
   document.title = `Reading: "${blogData.title}"`;
 
   return (
-    <div className="content">
+    <div className="article">
       <h1>{blogData.title}</h1>
 
-      <div className="content-info">  
+      <div className="article-info">  
         <span>📘 &nbsp;{blogData.tags[0]}</span>
         <span>🖊️ &nbsp;{blogData.author}</span>
         <span>🕓 &nbsp;{blogData.date}</span>
@@ -24,11 +24,11 @@ function Content({ blogData, handleSearch }) {
 
       <Markdown>{data}</Markdown>
       
-      <span className="content-tags">
+      <span className="article-tags">
         { blogData.tags.map((tag) => <span key={tag} onClick={() => handleSearch(tag)}>&#35; {tag}</span>) }
       </span>
     </div>
   );
 }
 
-export default Content;
+export default Article;

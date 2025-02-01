@@ -27,13 +27,14 @@ function CommentDiscussion({ id }) {
 
 function CommentSection({ id }) {
   const editorRef = useRef();
-  const { submitData, submitStatus } = useSubmit(`${import.meta.env.VITE_API_URL}/messages`);
-  const { data, status } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`);  
   const [comments, setComments] = useState([]);
   
+  const { data: submitData, status: submitStatus } = useSubmit(`${import.meta.env.VITE_API_URL}/messages`);
+  const { data: fetchData, status: fetchStatus } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`);  
+  
   useEffect(() => {
-    if (data) setComments(JSON.parse(data));
-  }, [data]);
+    if (fetchData) setComments(JSON.parse(fetchData));
+  }, [fetchData]);
   
   let handleStretchArea = () => {
     editorRef.current.style.height = "0";
@@ -56,16 +57,13 @@ function CommentSection({ id }) {
       parent: id
     });
 
-    if (response) {
-      setComments(prevComments => [...prevComments, response]);
-    }
-
+    if (response) setComments(prevComments => [...prevComments, response]);
     handleClearComment();
   };
   
-  if (submitStatus == "loading" || status == "loading")
+  if (submitStatus == "loading" || fetchStatus == "loading")
     return (<div className="spinner content"> <div></div> </div>);
-  if (submitStatus == "error" || status == "error")
+  if (submitStatus == "error" || fetchStatus == "error")
     return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
   return (

@@ -3,7 +3,7 @@ import { useState } from "react";
 function useSubmit(url) {
   const [status, setStatus] = useState("pending");
 
-  let submitData = async (body) => {
+  let data = async (body) => {
     try {
         const response = await fetch(url, {
         method: "POST",
@@ -23,7 +23,7 @@ function useSubmit(url) {
     }
   };
 
-  return { submitData, status };
+  return { data, status };
 }
 
 export default useSubmit;
