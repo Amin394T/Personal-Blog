@@ -2,18 +2,14 @@
   margin: 0 auto 30px;
 }
 
-.comment-section > .comments {
-  margin-top: 40px;
-}
-
 .comment-editor {
   margin: auto;
+  margin-bottom: 80px;
   max-width: 980px;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;

@@ -4,7 +4,6 @@ function useSubmit(url) {
   const [status, setStatus] = useState("pending");
 
   let data = async (body) => {
-    console.log(body)
     try {
         const response = await fetch(url, {
         method: "POST",

@@ -3,37 +3,12 @@ import "../styles/Comments.css";
 import useFetch from "../utilities/useFetch";
 import useSubmit from "../utilities/useSubmit";
 
-function CommentDiscussion({ id }) {
-  const [comments, setComments] = useState([]);
-  const { data: fetchData, status: fetchStatus } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`);
-
-  useEffect(() => {
-    if (fetchData) setComments(JSON.parse(fetchData));
-  }, [fetchData]);
-
-  if (fetchStatus == "loading")
-    return (<div className="spinner content"> <div></div> </div>);
-  if (fetchStatus == "error")
-    return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
-  
-  return (
-    <div className="comment-discussion">
-      {comments.map((comment) =>
-        <div className="comments" key={comment.id}>
-          <div className="comment">
-            <div className="comment-user">💬 &nbsp; {comment.user}</div>
-            <div className="comment-text">{comment.content}</div>
-          </div>
-        </div>
-      )}
-      <CommentEditor {...{id, setComments}} />
-    </div>
-  );
-}
 
 function CommentSection({ id }) {
   const [comments, setComments] = useState([]);
   const { data: fetchData, status: fetchStatus } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`);  
+
+  const blogID = new URLSearchParams(window.location.search).get("blog");
   
   useEffect(() => {
     if (fetchData) setComments(JSON.parse(fetchData));
@@ -46,16 +21,17 @@ function CommentSection({ id }) {
 
   return (
     <div className="comment-section">
-      <CommentEditor {...{id, setComments}} />
+      { blogID == id && <CommentEditor {...{id, setComments}} /> }
       {comments.map((comment) =>
           <div className="comments" key={comment.id}>
             <div className="comment">
               <div className="comment-user">💬 &nbsp; {comment.user}</div>
               <div className="comment-text">{comment.content}</div>
             </div>
-            <CommentDiscussion {...{id: comment.id}} />
+            { blogID == id && <CommentSection id={comment.id} /> }
           </div>
       )}
+      { blogID != id && <CommentEditor {...{id, setComments}} /> }
     </div>
   );
 }
@@ -85,9 +61,10 @@ function CommentEditor({ id, setComments }) {
       parent: id.toString()
     });
 
-    submitStatus != "error" && response
-      ? setComments(prevComments => [...prevComments, response])
-      : handleClearComment();
+    if (submitStatus != "error" && response) {
+      setComments(prevComments => [...prevComments, response]);
+      handleClearComment();
+    }
   };
   
   return (
