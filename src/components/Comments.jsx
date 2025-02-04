@@ -6,6 +6,7 @@ import useSubmit from "../utilities/useSubmit";
 
 function CommentSection({ id }) {
   const [comments, setComments] = useState([]);
+  const [showEditor, setShowEditor] = useState(false);
   const { data: fetchData, status: fetchStatus } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`);  
 
   const blogID = new URLSearchParams(window.location.search).get("blog");
@@ -21,7 +22,10 @@ function CommentSection({ id }) {
 
   return (
     <div className="comment-section">
-      { blogID == id && <CommentEditor {...{id, setComments}} /> }
+      <button onClick={() => setShowEditor(!showEditor)}>
+        {showEditor ? 'Hide Editor' : 'Show Editor'}
+      </button>
+      { showEditor && blogID == id && <CommentEditor {...{id, setComments}} /> }
       {comments.map((comment) =>
           <div className="comments" key={comment.id}>
             <div className="comment">
@@ -31,7 +35,7 @@ function CommentSection({ id }) {
             { blogID == id && <CommentSection id={comment.id} /> }
           </div>
       )}
-      { blogID != id && <CommentEditor {...{id, setComments}} /> }
+      { showEditor && blogID != id && <CommentEditor {...{id, setComments}} /> }
     </div>
   );
 }
