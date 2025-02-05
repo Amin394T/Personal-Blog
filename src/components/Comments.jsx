@@ -22,11 +22,9 @@ function CommentSection({ id }) {
 
   return (
     <div className="comment-section">
-      <button onClick={() => setShowEditor(!showEditor)}>
-        {showEditor ? 'Hide Editor' : 'Show Editor'}
-      </button>
-      { showEditor && blogID == id && <CommentEditor {...{id, setComments}} /> }
-      {comments.map((comment) =>
+      { blogID == id && <CommentEditor {...{id, setComments, setShowEditor}} /> }
+      {
+        comments.map((comment) =>
           <div className="comments" key={comment.id}>
             <div className="comment">
               <div className="comment-user">💬 &nbsp; {comment.user}</div>
@@ -34,13 +32,15 @@ function CommentSection({ id }) {
             </div>
             { blogID == id && <CommentSection id={comment.id} /> }
           </div>
-      )}
-      { showEditor && blogID != id && <CommentEditor {...{id, setComments}} /> }
+        )
+      }
+      { showEditor && blogID != id && <CommentEditor {...{id, setComments, setShowEditor}} /> }
+      { blogID != id && !showEditor && <button onClick={() => setShowEditor(!showEditor)}> Reply </button> }
     </div>
   );
 }
 
-function CommentEditor({ id, setComments }) {
+function CommentEditor({ id, setComments, setShowEditor }) {
   const editorRef = useRef();
   const { data: submitData, status: submitStatus } = useSubmit(`${import.meta.env.VITE_API_URL}/messages`);
   
@@ -68,6 +68,7 @@ function CommentEditor({ id, setComments }) {
     if (submitStatus != "error" && response) {
       setComments(prevComments => [...prevComments, response]);
       handleClearComment();
+      setShowEditor(false);
     }
   };
   
