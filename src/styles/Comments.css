@@ -1,15 +1,7 @@
-.comment-section {
-  margin: 0 auto 30px;
-}
-
 .comment-editor {
   margin: auto;
   margin-bottom: 80px;
-  max-width: 980px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  max-width: 1020px;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
@@ -30,40 +22,30 @@
   background-color: #f4f2ef;
 }
 
-.comment-editor > button {
+.comment-section button {
   background-color: #003135;
   padding: 1px 5px;
   border-radius: 5px;
   color: #f5efe6;
+  font-weight: bold;
   cursor: pointer;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
-  height: 25px;
-  width: 60px;
+  height: 27px;
+  width: 75px;
 }
 
 .comment-section > button {
-  background-color: #f4f2ef;
-  padding: 1px 5px;
-  border-radius: 5px;
-  color: #003135;
-  cursor: pointer;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
-  height: 25px;
-  width: 75px;
-  font-weight: bold;
   margin-left: calc(100% - 75px);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.comments > .comment-section > .comment-editor {
-  margin-left: 30px;
+.comments > .comment-section{
+  padding-left: 30px;
 }
 
 .comments {
-  padding-left: 30px;
-  max-width: 980px;
+  max-width: 1020px;
   margin: auto;
 }
 
@@ -87,26 +69,37 @@
 }
 
 @media screen and (max-width: 1080px) {
+  .comment-editor {
+    margin-bottom: 55px;
+  }
+
   .comment-section {
     margin-inline: 30px;
   }
 
+  .comment-user {
+    font-size: 16.5px;
+  }
+
   .comment-text {
-    font-size: 15px;
+    font-size: 14.5px;
+  }
+
+  .comments > .comment-section {
+    margin-inline: 0;
   }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 560px) {  
   .comment-section {
     margin-inline: 10px;
   }
 
-  .comment-section > .comments {
-    margin-top: 30px;
-  }
-
-  .comments {
-    padding-left: 20px;
+  .comment-editor > textarea {
+    font-size: 13px;
+    padding: 10px 10px 0;
+    width: 100%;
+    height: 34px;
   }
 
   .comment {
@@ -114,7 +107,7 @@
   }
 
   .comment-user {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .comment-text {

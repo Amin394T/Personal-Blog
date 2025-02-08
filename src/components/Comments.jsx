@@ -49,9 +49,10 @@ function CommentEditor({ id, setComments, setShowEditor }) {
     editorRef.current.style.height = editorRef.current.scrollHeight + "px";
   };
 
-  let handleClearComment = () => {
+  let handleCancelComment = () => {
     editorRef.current.value = "";
     handleStretchArea();
+    setShowEditor(false);
   };
 
   let handleSubmitComment = async () => {
@@ -67,15 +68,14 @@ function CommentEditor({ id, setComments, setShowEditor }) {
 
     if (submitStatus != "error" && response) {
       setComments(prevComments => [...prevComments, response]);
-      handleClearComment();
-      setShowEditor(false);
+      handleCancelComment();
     }
   };
   
   return (
       <div className="comment-editor" key={id}>
         <textarea placeholder="Write a comment..." ref={editorRef} onChange={handleStretchArea} />
-        <button onClick={handleClearComment}>Clear</button>
+        <button onClick={handleCancelComment}>Cancel</button>
         <button onClick={handleSubmitComment}>Submit</button>
       </div>
   );
