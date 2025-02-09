@@ -6,7 +6,7 @@ import useFetch from "../utilities/useFetch";
 function CommentSection({ id }) {
   const [comments, setComments] = useState([]);
   const [showEditor, setShowEditor] = useState(false);
-  const { data: fetchData, status: fetchStatus } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`);  
+  const { data: fetchData, status: fetchStatus } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${id}`, false);  
 
   const blogID = new URLSearchParams(window.location.search).get("blog");
   
@@ -62,7 +62,6 @@ function CommentEditor({ id, setComments, setShowEditor }) {
 
   let handleSubmitComment = async () => {
     //setMessage("Submitting comment ...");
-
     const request = await fetch(`${import.meta.env.VITE_API_URL}/messages`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -76,7 +75,9 @@ function CommentEditor({ id, setComments, setShowEditor }) {
     const response = await request.json();
     
     if (request.ok) {
-      setComments(prevComments => [response, ...prevComments]);
+      new URLSearchParams(window.location.search).get("blog") == id
+        ? setComments(prevComments => [response, ...prevComments])
+        : setComments(prevComments => [...prevComments, response]);
       handleCancelComment();
       setMessage(""); 
     }
