@@ -33,5 +33,5 @@ You can delete the mock-up blogs and their images, and remove their entries from
 
 - update and delete own comments
 - authenticate user and store in local storage
-- error and loading messages
+- comment submission error and loading messages
 - sorting comments by date without affecting replies order

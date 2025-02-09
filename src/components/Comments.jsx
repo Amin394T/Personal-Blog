@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/Comments.css";
 import useFetch from "../utilities/useFetch";
-import useSubmit from "../utilities/useSubmit";
 
 
 function CommentSection({ id }) {
@@ -48,7 +47,7 @@ function CommentEditor({ id, setComments, setShowEditor }) {
   const editorRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const { data: submitData, status: submitStatus } = useSubmit(`${import.meta.env.VITE_API_URL}/messages`);
+  const [message, setMessage] = useState("");
   
   let handleStretchArea = () => {
     editorRef.current.style.height = "0";
@@ -61,33 +60,39 @@ function CommentEditor({ id, setComments, setShowEditor }) {
     setShowEditor(false);
   };
 
-  let handleSubmitComment = async () => {    
-    console.log("1: " + submitStatus);
-    const response = await submitData({
-      username: usernameRef.current.value,
-      password: passwordRef.current.value,
-      content: editorRef.current.value,
-      parent: id.toString()
+  let handleSubmitComment = async () => {
+    //setMessage("Submitting comment ...");
+
+    const request = await fetch(`${import.meta.env.VITE_API_URL}/messages`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: usernameRef.current.value,
+        password: passwordRef.current.value,
+        content: editorRef.current.value,
+        parent: id.toString()
+      }),
     });
+    const response = await request.json();
     
-    console.log("2: " + submitStatus);
-    if (submitStatus == "complete" && response) {
-      setComments(prevComments => [...prevComments, response]);
+    if (request.ok) {
+      setComments(prevComments => [response, ...prevComments]);
       handleCancelComment();
+      setMessage(""); 
     }
-    console.log("3: " + submitStatus);
+    else {
+      setMessage(response.message);
+      console.error(response.message);
+    }
   };
   
   return (
       <div className="comment-editor" key={id}>
         <textarea placeholder="Write a comment ..." ref={editorRef} onChange={handleStretchArea} />
-        <div className="comment-editor-login">
+        <div className="comment-editor-auth">
           <input ref={usernameRef} type="text" placeholder="Username" />
           <input ref={passwordRef} type="password" placeholder="Password" />
-        </div>
-        <div className="comment-editor-status">
-          { submitStatus == "loading" && "Submitting in progress..." }
-          { submitStatus == "error" && "Submission failed!" }
+          {message}
         </div>
         <div className="comment-editor-controls">
           <button onClick={handleCancelComment}>Cancel</button>
