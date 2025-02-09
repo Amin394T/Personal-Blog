@@ -61,7 +61,6 @@ function CommentEditor({ id, setComments, setShowEditor }) {
   };
 
   let handleSubmitComment = async () => {
-    //setMessage("Submitting comment ...");
     const request = await fetch(`${import.meta.env.VITE_API_URL}/messages`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -81,9 +80,28 @@ function CommentEditor({ id, setComments, setShowEditor }) {
       handleCancelComment();
       setMessage(""); 
     }
+    else if (request.status == 401) {
+      const confirmCreateUser = window.confirm("Do you want to create a new account?");
+      if (!confirmCreateUser) {
+        setMessage("Account Creation Required!");
+        return;
+      }
+
+      const registerRequest = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: usernameRef.current.value,
+          password: passwordRef.current.value,
+        }),
+      });
+      
+      registerRequest.ok
+        ? handleSubmitComment()
+        : setMessage("Invalid Credentials!");
+    }
     else {
       setMessage(response.message);
-      console.error(response.message);
     }
   };
   

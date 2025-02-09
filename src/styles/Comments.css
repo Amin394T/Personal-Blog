@@ -30,9 +30,11 @@
   border-radius: 5px;
   border: 2px solid #003135;
   font-family: inherit;
+  font-size: 15px;
   background-color: #f4f2ef;
   padding-left: 10px;
   margin-right: 10px;
+  width: 120px;
 }
 
 .comment-section button {
@@ -116,6 +118,16 @@
     padding: 10px 10px 0;
     width: 100%;
     height: 34px;
+  }
+
+  .comment-editor-auth {
+    width: 150px;
+  }
+
+  .comment-editor-auth > input {
+    font-size: 13px;
+    height: 21px;
+    margin-bottom: 5px;
   }
 
   .comment {
