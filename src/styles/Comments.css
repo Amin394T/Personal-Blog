@@ -3,7 +3,7 @@
   margin-bottom: 80px;
   max-width: 1020px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -22,6 +22,15 @@
   background-color: #f4f2ef;
 }
 
+.comment-editor-login > input {
+  border-radius: 5px;
+  border: 2px solid #003135;
+  font-family: inherit;
+  background-color: #f4f2ef;
+  padding-left: 10px;
+  margin-right: 10px;
+}
+
 .comment-section button {
   background-color: #003135;
   padding: 1px 5px;
@@ -33,6 +42,7 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
   height: 27px;
   width: 75px;
+  margin-left: 10px;
 }
 
 .comment-section > button {
@@ -61,6 +71,8 @@
 .comment-user {
   font-weight: bold;
   font-size: 17.5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .comment-text {

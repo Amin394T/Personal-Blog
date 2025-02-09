@@ -8,6 +8,11 @@ function Navigation({ searchWord, handleSearch }) {
         className="navigation-search" value={searchWord} placeholder="🔍  Search ..."
         onChange={(event) => handleSearch(event.target.value)}
       />
+      {/* <div className="navigation-auth-form">
+        <input type="text" placeholder="Username" />
+        <input type="password" placeholder="Password" />
+        <button> Register </button>
+      </div> */}
     </div>
   );
 }
