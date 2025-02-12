@@ -1,7 +1,8 @@
 import "../styles/App.css";
 import Navigation from "./Navigation";
-import Content from "./Content";
+import Article from "./Article";
 import Feed from "./Feed";
+import Comments from "./Comments";
 import useFetch from "../utilities/useFetch";
 import { startTransition, useState } from "react";
 
@@ -49,17 +50,20 @@ function App() {
       <Navigation {...{ searchWord, handleSearch }} />
 
       { !currentBlog && !searchWord &&
-        <div className="content">
+        <div className="article">
           <h1> {welcome.heading} </h1>
           <p> {welcome.line_1} </p>
           <p> {welcome.line_2} </p>
           <p> {welcome.line_3} </p>
         </div> }
 
-      { currentBlog
-        ? <Content {...{ blogData, handleSearch }} />
-        : <Feed {...{ blogsList, handleSelection, searchWord }} />
-      }
+        { currentBlog
+          ? <>
+              <Article {...{ blogData, handleSearch }} />
+              <Comments {...{id: blogData?.path}} />
+            </>
+          : <Feed {...{ blogsList, handleSelection, searchWord }} />
+        }
     </>
   );
 }

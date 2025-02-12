@@ -1,0 +1,145 @@
+.comment-editor {
+    margin: auto;
+    margin-bottom: 80px;
+    max-width: 1020px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .comment-editor > textarea {
+    font-size: 15px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
+    resize: none;
+    width: calc(100% - 38px);
+    padding: 18px 18px 0;
+    overflow: hidden;
+    border: 2px solid #003135;
+    font-family: inherit;
+    height: 47px;
+    background-color: #f4f2ef;
+  }
+  
+  .comment-editor-auth {
+    color: #d22222;
+  }
+  
+  .comment-editor-auth > input {
+    border-radius: 5px;
+    border: 2px solid #003135;
+    font-family: inherit;
+    font-size: 15px;
+    background-color: #f4f2ef;
+    padding-right: 10px;
+    margin-left: 10px;
+    width: 120px;
+  }
+  
+  .comment-section button {
+    background-color: #003135;
+    padding: 1px 5px;
+    border-radius: 5px;
+    color: #f5efe6;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
+    height: 27px;
+    width: 75px;
+    margin-right: 10px;
+  }
+  
+  .comment-section > button {
+    margin-right: calc(100% - 75px);
+    margin-bottom: 30px;
+  }
+  
+  .comments > .comment-section{
+    padding-right: 30px;
+  }
+  
+  .comments {
+    max-width: 1020px;
+    margin: auto;
+  }
+  
+  .comment {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 7px 16px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
+    margin: 0 auto 10px;
+    background-color: #f4f2ef;
+  }
+  
+  .comment-user {
+    font-weight: bold;
+    font-size: 17.5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .comment-text {
+    padding-right: 10px;
+    font-size: 16px;
+  }
+  
+  @media screen and (max-width: 1080px) {
+    .comment-editor {
+      margin-bottom: 55px;
+    }
+  
+    .comment-section {
+      margin-inline: 30px;
+    }
+  
+    .comment-user {
+      font-size: 16.5px;
+    }
+  
+    .comment-text {
+      font-size: 14.5px;
+    }
+  
+    .comments > .comment-section {
+      margin-inline: 0;
+    }
+  }
+  
+  @media screen and (max-width: 560px) {  
+    .comment-section {
+      margin-inline: 10px;
+    }
+  
+    .comment-editor > textarea {
+      font-size: 13px;
+      padding: 10px 10px 0;
+      width: 100%;
+      height: 34px;
+    }
+  
+    .comment-editor-auth {
+      width: 150px;
+    }
+  
+    .comment-editor-auth > input {
+      font-size: 13px;
+      height: 21px;
+      margin-bottom: 5px;
+    }
+  
+    .comment {
+      padding: 5px 12px;
+    }
+  
+    .comment-user {
+      font-size: 15px;
+    }
+  
+    .comment-text {
+      padding-right: 0;
+      font-size: 14px;
+    }
+  }
