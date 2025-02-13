@@ -109,12 +109,12 @@ function CommentEditor({ id, setComments, setShowEditor }) {
         <div className="comment-editor-auth">
           <input ref={usernameRef} type="text" placeholder="اسم المستخدم" />
           <input ref={passwordRef} type="password" placeholder="الرمز السري" />
-          {message}
         </div>
         <div className="comment-editor-controls">
           <button onClick={handleCancelComment}>إلغاء</button>
           <button onClick={handleSubmitComment}>إرسال</button>
         </div>
+        <span className="comment-editor-message">{message}</span>
       </div>
   );
 }
