@@ -15,9 +15,9 @@ function CommentSection({ id }) {
   }, [fetchData]);
   
   if (fetchStatus == "loading")
-    return (<div className="spinner content"> <div></div> </div>);
+    return (<div className="spinner comment-section"> <div></div> </div>);
   if (fetchStatus == "error")
-    return (<div className="error content"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
+    return (<div className="error comment-section"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
 
   return (
     <div className="comment-section">
@@ -92,7 +92,7 @@ function CommentEditor({ id, setComments, setShowEditor }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username: usernameRef.current.value,
-          password: passwordRef.current.value,
+          password: passwordRef.current.value
         }),
       });
       
@@ -111,12 +111,12 @@ function CommentEditor({ id, setComments, setShowEditor }) {
         <div className="comment-editor-auth">
           <input ref={usernameRef} type="text" placeholder="Username" />
           <input ref={passwordRef} type="password" placeholder="Password" />
-          {message}
         </div>
         <div className="comment-editor-controls">
           <button onClick={handleCancelComment}>Cancel</button>
           <button onClick={handleSubmitComment}>Submit</button>
         </div>
+        <span className="comment-editor-message">{message}</span>
       </div>
   );
 }
