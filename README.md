@@ -33,6 +33,6 @@ You can delete the mock-up blogs and their images, and remove their entries from
 
 - update and delete own comments
 - registe authenticate user separatly from comment and cache credentials
-- differentiate between wrong password and new username
+- implement blocked user checking
 - comment submission loading spinner
 - sorting comments by date without affecting replies order

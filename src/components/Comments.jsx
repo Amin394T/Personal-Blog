@@ -54,7 +54,7 @@ function CommentEditor({ id, setComments, setShowEditor }) {
     editorRef.current.style.height = editorRef.current.scrollHeight + "px";
   };
 
-  let handleCancelComment = () => {
+  let handleClearComment = () => {
     editorRef.current.value = "";
     handleStretchArea();
     setShowEditor(false);
@@ -65,7 +65,7 @@ function CommentEditor({ id, setComments, setShowEditor }) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: usernameRef.current.value,
+        username: usernameRef.current.value.trim(),
         password: passwordRef.current.value,
         content: editorRef.current.value,
         parent: id.toString()
@@ -77,11 +77,11 @@ function CommentEditor({ id, setComments, setShowEditor }) {
       new URLSearchParams(window.location.search).get("blog") == id
         ? setComments(prevComments => [response, ...prevComments])
         : setComments(prevComments => [...prevComments, response]);
-      handleCancelComment();
+      handleClearComment();
       setMessage(""); 
     }
-    else if (request.status == 401) {
-      const confirmCreateUser = window.confirm("Do you want to create a new account?");
+    else if (response.code == 31 && usernameRef.current.value) {
+      const confirmCreateUser = window.confirm("Create a new Account?");
       if (!confirmCreateUser) {
         setMessage("Account Creation Required!");
         return;
@@ -95,14 +95,19 @@ function CommentEditor({ id, setComments, setShowEditor }) {
           password: passwordRef.current.value
         }),
       });
-      
-      registerRequest.ok
-        ? handleSubmitComment()
-        : setMessage("Invalid Credentials!");
+      const registerResponse = await registerRequest.json();
+
+      if (registerRequest.ok)
+        handleSubmitComment();
+      else if (registerResponse.code == 10)
+        setMessage("Technical Error!");
+      else
+        setMessage(registerResponse.message);
     }
-    else {
+    else if (response.code == 30)
+      setMessage("Technical Error!");
+    else
       setMessage(response.message);
-    }
   };
   
   return (
@@ -113,7 +118,7 @@ function CommentEditor({ id, setComments, setShowEditor }) {
           <input ref={passwordRef} type="password" placeholder="Password" />
         </div>
         <div className="comment-editor-controls">
-          <button onClick={handleCancelComment}>Cancel</button>
+          <button onClick={handleClearComment}>Cancel</button>
           <button onClick={handleSubmitComment}>Submit</button>
         </div>
         <span className="comment-editor-message">{message}</span>
