@@ -32,7 +32,6 @@ You can delete the mock-up blogs and their images, and remove their entries from
 ## TO-DO
 
 - update and delete own comments
-- registe authenticate user separatly from comment and cache credentials
-- implement blocked user checking
-- comment submission loading spinner
+- register authenticate user separatly from comment
+- administration API
 - sorting comments by date without affecting replies order
