@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/Editor.css";
 
 function Editor({ id, setComments, setShowEditor }) {
@@ -6,6 +6,13 @@ function Editor({ id, setComments, setShowEditor }) {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
+    if (storedUsername) usernameRef.current.value = storedUsername;
+    if (storedPassword) passwordRef.current.value = storedPassword;
+  }, []);
 
   let handleStretchArea = () => {
     editorRef.current.style.height = "0";
@@ -19,12 +26,18 @@ function Editor({ id, setComments, setShowEditor }) {
   };
 
   let handleSubmitComment = async () => {
+    const username = usernameRef.current.value.trim();
+    const password = passwordRef.current.value;
+
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+
     const request = await fetch(`${import.meta.env.VITE_API_URL}/messages`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: usernameRef.current.value.trim(),
-        password: passwordRef.current.value,
+        username,
+        password,
         content: editorRef.current.value,
         parent: id.toString(),
       }),
@@ -37,7 +50,7 @@ function Editor({ id, setComments, setShowEditor }) {
         : setComments((prevComments) => [...prevComments, response]);
       handleClearComment();
       setMessage("");
-    } else if (response.code == 31 && usernameRef.current.value) {
+    } else if (response.code == 31 && username) {
       const confirmCreateUser = window.confirm("Create a new Account?");
       if (!confirmCreateUser) {
         setMessage("Account Creation Required!");
@@ -49,10 +62,7 @@ function Editor({ id, setComments, setShowEditor }) {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            username: usernameRef.current.value,
-            password: passwordRef.current.value,
-          }),
+          body: JSON.stringify({ username, password })
         }
       );
       const registerResponse = await registerRequest.json();
@@ -60,6 +70,7 @@ function Editor({ id, setComments, setShowEditor }) {
       if (registerRequest.ok) handleSubmitComment();
       else if (registerResponse.code == 10) setMessage("Technical Error!");
       else setMessage(registerResponse.message);
+      
     } else if (response.code == 30) setMessage("Technical Error!");
     else setMessage(response.message);
   };
