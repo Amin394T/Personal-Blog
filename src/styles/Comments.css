@@ -1,49 +1,11 @@
-.comment-editor {
-  margin-bottom: 80px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.comment-editor > textarea {
-  font-size: 15px;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
-  resize: none;
-  width: calc(100% - 38px);
-  padding: 18px 18px 0;
-  overflow: hidden;
-  border: 2px solid #003135;
-  font-family: inherit;
-  height: 47px;
-  background-color: #f4f2ef;
-}
-
-.comment-editor-message {
-  color: #d22222;
-  flex-basis: 100%;
-}
-
-.comment-editor-auth > input {
-  border-radius: 5px;
-  border: 2px solid #003135;
-  font-family: inherit;
-  font-size: 15px;
-  background-color: #f4f2ef;
-  padding-right: 10px;
-  margin-left: 10px;
-  width: 120px;
-}
-
-.comment-section {
+.comments {
   max-width: 1020px;
   margin: 0 auto 20px;
   height: fit-content;
   top: 0;
 }
 
-.comment-section button {
+.comments button {
   background-color: #003135;
   padding: 1px 5px;
   border-radius: 5px;
@@ -58,12 +20,12 @@
   font-family: inherit;
 }
 
-.comment-section > button {
+.comments > button {
   margin-right: calc(100% - 75px);
   margin-bottom: 30px;
 }
 
-.comments > .comment-section {
+.comments-list > .comments{
   padding-right: 30px;
 }
 
@@ -89,11 +51,7 @@
 }
 
 @media screen and (max-width: 1080px) {
-  .comment-editor {
-    margin-bottom: 55px;
-  }
-
-  .comment-section {
+  .comments {
     margin-inline: 30px;
   }
 
@@ -105,36 +63,14 @@
     font-size: 14.5px;
   }
 
-  .comments > .comment-section {
+  .comments-list > .comments {
     margin-inline: 0;
   }
 }
 
-@media screen and (max-width: 560px) {
-  .comment-section {
+@media screen and (max-width: 560px) {  
+  .comments {
     margin-inline: 10px;
-  }
-
-  .comment-editor {
-    margin-bottom: 40px;
-    gap: 5px;
-  }
-
-  .comment-editor > textarea {
-    font-size: 13px;
-    padding: 10px 10px 0;
-    width: 100%;
-    height: 34px;
-  }
-
-  .comment-editor-auth {
-    width: 0;
-  }
-
-  .comment-editor-auth > input {
-    font-size: 13px;
-    height: 21px;
-    margin-bottom: 5px;
   }
 
   .comment {
