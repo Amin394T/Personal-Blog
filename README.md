@@ -31,7 +31,7 @@ You can delete the mock-up blogs and their images, and remove their entries from
 
 ## TO-DO
 
-- update and delete own comments
+- reply to comment, add @username to editor
+- update own comments
+- delete own comments, with confirmation
 - register authenticate user separatly from comment
-- administration API
-- sorting comments by date without affecting replies order

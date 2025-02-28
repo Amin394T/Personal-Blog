@@ -40,7 +40,7 @@ function Editor({ id, setComments, setShowEditor }) {
         password,
         content: editorRef.current.value,
         parent: id.toString(),
-      }),
+      })
     });
     const response = await request.json();
 
@@ -48,6 +48,7 @@ function Editor({ id, setComments, setShowEditor }) {
       new URLSearchParams(window.location.search).get("blog") == id
         ? setComments((prevComments) => [response, ...prevComments])
         : setComments((prevComments) => [...prevComments, response]);
+        
       handleClearComment();
       setMessage("");
     } else if (response.code == 31 && username) {
