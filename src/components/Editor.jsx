@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/Editor.css";
 
-function Editor({ id, setComments, setShowEditor }) {
+function Editor({ id, mention, setComments, setShowEditor }) {
   const editorRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    editorRef.current.focus();
+    editorRef.current.value = mention ? `@${mention} ` : "";
     const storedUsername = localStorage.getItem("username");
     const storedPassword = localStorage.getItem("password");
     if (storedUsername) usernameRef.current.value = storedUsername;
     if (storedPassword) passwordRef.current.value = storedPassword;
-  }, []);
+  }, [mention]);
 
   let handleStretchArea = () => {
     editorRef.current.style.height = "0";
@@ -39,7 +41,7 @@ function Editor({ id, setComments, setShowEditor }) {
         username,
         password,
         content: editorRef.current.value,
-        parent: id.toString(),
+        parent: id.toString()
       })
     });
     const response = await request.json();
