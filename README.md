@@ -31,7 +31,6 @@ You can delete the mock-up blogs and their images, and remove their entries from
 
 ## TO-DO
 
-- reply to comment, add @username to editor
+- hide menu when click away
 - update own comments
-- delete own comments, with confirmation
 - register authenticate user separatly from comment

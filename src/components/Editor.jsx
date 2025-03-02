@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/Editor.css";
 
-function Editor({ id, mention, setComments, setShowEditor }) {
+function Editor({ id, content, setComments, setShowEditor }) {
   const editorRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -9,12 +9,12 @@ function Editor({ id, mention, setComments, setShowEditor }) {
 
   useEffect(() => {
     editorRef.current.focus();
-    editorRef.current.value = mention ? `@${mention} ` : "";
+    editorRef.current.value = content || "";
     const storedUsername = localStorage.getItem("username");
     const storedPassword = localStorage.getItem("password");
     if (storedUsername) usernameRef.current.value = storedUsername;
     if (storedPassword) passwordRef.current.value = storedPassword;
-  }, [mention]);
+  }, [content]);
 
   let handleStretchArea = () => {
     editorRef.current.style.height = "0";

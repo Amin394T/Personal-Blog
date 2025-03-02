@@ -98,7 +98,8 @@
   border: 1px solid #ccc;
   position: absolute;
   border-radius: 7px;
-  margin-left: -60px;
+  margin-left: -70px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .comment-controls-list li {
