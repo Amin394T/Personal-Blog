@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/Editor.css";
 
-function Editor({ id, content, setComments, setShowEditor }) {
+function Editor({ id, content, setComments, setShowEditor, mode }) {
   const editorRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -34,57 +34,85 @@ function Editor({ id, content, setComments, setShowEditor }) {
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
 
-    const request = await fetch(`${import.meta.env.VITE_API_URL}/messages`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username,
-        password,
-        content: editorRef.current.value,
-        parent: id.toString()
-      })
-    });
-    const response = await request.json();
+    if (mode == "create") {
 
-    if (request.ok) {
-      new URLSearchParams(window.location.search).get("blog") == id
-        ? setComments((prevComments) => [response, ...prevComments])
-        : setComments((prevComments) => [...prevComments, response]);
-        
-      handleClearComment();
-      setMessage("");
-    } else if (response.code == 31 && username) {
-      const confirmCreateUser = window.confirm("Create a new Account?");
-      if (!confirmCreateUser) {
-        setMessage("Account Creation Required!");
-        return;
+      const request = await fetch(`${import.meta.env.VITE_API_URL}/messages`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password,
+          content: editorRef.current.value,
+          parent: id.toString()
+        })
+      });
+      const response = await request.json();
+
+      if (request.ok) {
+        new URLSearchParams(window.location.search).get("blog") == id
+          ? setComments((prevComments) => [response, ...prevComments])
+          : setComments((prevComments) => [...prevComments, response]);
+          
+        handleClearComment();
+        setMessage("");
       }
-
-      const registerRequest = await fetch(
-        `${import.meta.env.VITE_API_URL}/users/register`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password })
+      else if (response.code == 31 && username) {
+        const confirmCreateUser = window.confirm("Create a new Account?");
+        if (!confirmCreateUser) {
+          setMessage("Account Creation Required!");
+          return;
         }
-      );
-      const registerResponse = await registerRequest.json();
 
-      if (registerRequest.ok) handleSubmitComment();
-      else if (registerResponse.code == 10) setMessage("Technical Error!");
-      else setMessage(registerResponse.message);
-      
-    } else if (response.code == 30) setMessage("Technical Error!");
-    else setMessage(response.message);
+        const registerRequest = await fetch(
+          `${import.meta.env.VITE_API_URL}/users/register`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+          }
+        );
+        const registerResponse = await registerRequest.json();
+
+        if (registerRequest.ok) handleSubmitComment();
+        else if (registerResponse.code == 10) setMessage("Technical Error!");
+        else setMessage(registerResponse.message);
+        
+      }
+      else if (response.code == 30) setMessage("Technical Error!");
+      else setMessage(response.message);
+
+    } else if (mode == "update") {
+    
+      const request = await fetch(`${import.meta.env.VITE_API_URL}/messages/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password,
+          content: editorRef.current.value
+        })
+      });
+      const response = await request.json();
+
+      if (request.ok) {
+        setComments((prevComments) =>
+          prevComments.map((comment) =>
+            comment.id == id ? { ...comment, content: response.content } : comment
+          )
+        );
+        handleClearComment();
+        setMessage("");
+      }
+      else if (response.code == 50) setMessage("Technical Error!");
+      else setMessage(response.message);
+    }
+  
   };
+
 
   return (
     <div className="editor" key={id}>
-      <textarea
-        placeholder="Write a comment ..."
-        ref={editorRef}
-        onChange={handleStretchArea}
-      />
+      <textarea placeholder="Write a comment ..." ref={editorRef} onChange={handleStretchArea} />
       <div className="editor-authentication">
         <input ref={usernameRef} type="text" placeholder="Username" />
         <input ref={passwordRef} type="password" placeholder="Password" />

@@ -60,7 +60,7 @@ function Comments({ parent }) {
 
   return (
     <div className="comments">
-      { !isReply && <Editor {...{parent, setComments, setShowEditor}} /> }
+      { !isReply && <Editor {...{id: parent, setComments, setShowEditor, mode: "create"}} /> }
       {
         comments.map((comment) =>
           <div className="comments-list" key={comment.id} title={new Date(comment.date).toLocaleString().concat(comment.status == "edited" ? " (edited)" : "")}>
@@ -80,13 +80,13 @@ function Comments({ parent }) {
               <div className="comment-text">{comment.content}</div>
             </div>
             { !isReply && <Comments parent={comment.id} /> }
-            { isReply && showEditor == comment.id && <Editor {...{parent, content, setComments, setShowEditor}} /> }
+            { isReply && showEditor == comment.id && <Editor {...{id: parent, content, setComments, setShowEditor, mode: "update"}} /> }
           </div>
         )
       }
       {
         isReply && (showEditor == true
-          ? <Editor {...{parent, setComments, setShowEditor}} /> 
+          ? <Editor {...{id: parent, setComments, setShowEditor, mode: "create"}} /> 
           : <button onClick={() => setShowEditor(true)}> Reply </button>
       )}
     </div>

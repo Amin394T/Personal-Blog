@@ -88,7 +88,9 @@
   }
 }
 
-
+.comment-controls {
+  cursor: pointer;
+}
 
 .comment-controls-list {
   list-style: none;
