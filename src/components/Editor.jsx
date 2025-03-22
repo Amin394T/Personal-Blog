@@ -96,9 +96,7 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
 
       if (request.ok) {
         setComments((prevComments) =>
-          prevComments.map((comment) =>
-            comment.id == id ? { ...comment, content: response.content } : comment
-          )
+          prevComments.map((comment) => comment.id == id ? { ...comment, content: response.content } : comment)
         );
         handleClearComment();
         setMessage("");

@@ -32,5 +32,5 @@ You can delete the mock-up blogs and their images, and remove their entries from
 ## TO-DO
 
 - hide menu when click away
-- update own comments
+- fix update for parent comment
 - register authenticate user separatly from comment

@@ -80,7 +80,7 @@ function Comments({ parent }) {
               <div className="comment-text">{comment.content}</div>
             </div>
             { !isReply && <Comments parent={comment.id} /> }
-            { isReply && showEditor == comment.id && <Editor {...{id: parent, content, setComments, setShowEditor, mode: "update"}} /> }
+            { isReply && showEditor == comment.id && <Editor {...{id: comment.id, content, setComments, setShowEditor, mode: "update"}} /> }
           </div>
         )
       }
