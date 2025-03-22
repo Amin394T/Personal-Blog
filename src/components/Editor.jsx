@@ -8,7 +8,6 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    editorRef.current.focus();
     editorRef.current.value = content || "";
     const storedUsername = localStorage.getItem("username");
     const storedPassword = localStorage.getItem("password");

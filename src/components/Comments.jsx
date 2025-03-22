@@ -34,23 +34,20 @@ function Comments({ parent }) {
     const confirmDelete = window.confirm('Delete this comment?');
     if (!confirmDelete) return;
 
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/messages/${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: localStorage.getItem('username'),
-          password: localStorage.getItem('password')
-        }),
-      });
-      if (response.ok) {
-        setComments(comments.filter(comment => comment.id !== id));
-      } else {
-        console.error('Failed to delete the comment');
-      }
-    } catch (error) {
-      console.error('Error:', error);
+    const request = await fetch(`${import.meta.env.VITE_API_URL}/messages/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: localStorage.getItem('username'),
+        password: localStorage.getItem('password')
+      }),
+    });
+    const response = await request.json();
+
+    if (request.ok) {
+      setComments(comments.filter(comment => comment.id !== id));
     }
+    else if (response.code != 60) alert(response.message);
   };
 
   let handleModify = (comment) => {
