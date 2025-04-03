@@ -19,7 +19,7 @@ function Comments({ parent }) {
   if (fetchStatus == "loading")
     return (<div className="spinner comments"> <div></div> </div>);
   if (fetchStatus == "error")
-    return (<div className="error comments"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
+    return null;
 
   let handleDisplayControls = (id) => {
     setShowControls(showControls === id ? null : id);
