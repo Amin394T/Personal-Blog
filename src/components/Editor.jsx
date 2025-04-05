@@ -1,15 +1,16 @@
 import { useEffect, useRef } from "react";
 import "../styles/Editor.css";
 
-function Editor({ id, setComments, setShowEditor }) {
+function Editor({ id, content, setComments, setShowEditor, mode }) {
   const editorRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
 
   useEffect(() => {
+    editorRef.current.value = content || "";
     usernameRef.current.value = localStorage.getItem("username");
     passwordRef.current.value = localStorage.getItem("password");
-  }, []);
+  }, [content]);
 
   let handleStretchArea = () => {
     editorRef.current.style.height = "0";
@@ -29,44 +30,70 @@ function Editor({ id, setComments, setShowEditor }) {
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
 
-    const request = await fetch(`${import.meta.env.VITE_API_URL}/messages`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username,
-        password,
-        content: editorRef.current.value,
-        parent: id.toString()
-      })
-    });
-    const response = await request.json();
+    if (mode == "create") {
 
-    if (request.ok) {
-      new URLSearchParams(window.location.search).get("blog") == id
-        ? setComments((prevComments) => [response, ...prevComments])
-        : setComments((prevComments) => [...prevComments, response]);     
-      handleClearComment();
-    }
-    else if (response.code == 31 && username) {
-      const confirmCreateUser = window.confirm("Create a new Account?");
-      if (!confirmCreateUser) {
-        alert("Account Creation Required!");
-        return;
-      }
-
-      const registerRequest = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password })
+      const request = await fetch(`${import.meta.env.VITE_API_URL}/messages`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password,
+          content: editorRef.current.value,
+          parent: id.toString()
+        })
       });
-      const registerResponse = await registerRequest.json();
+      const response = await request.json();
 
-      if (registerRequest.ok) handleSubmitComment();
-      else if (registerResponse.code == 10) alert("Technical Error!");
-      else alert(registerResponse.message); 
+      if (request.ok) {
+        new URLSearchParams(window.location.search).get("blog") == id
+          ? setComments((prevComments) => [response, ...prevComments])
+          : setComments((prevComments) => [...prevComments, response]); 
+        handleClearComment();
+      }
+      else if (response.code == 31 && username) {
+        const confirmCreateUser = window.confirm("Create a new Account?");
+        if (!confirmCreateUser) {
+          alert("Account Creation Required!");
+          return;
+        }
+
+        const registerRequest = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
+        const registerResponse = await registerRequest.json();
+
+        if (registerRequest.ok) handleSubmitComment();
+        else if (registerResponse.code == 10) alert("Technical Error!");
+        else alert(registerResponse.message);
+        
+      }
+      else if (response.code == 30) alert("Technical Error!");
+      else alert(response.message);
+
+    } else if (mode == "update") {
+      
+      const request = await fetch(`${import.meta.env.VITE_API_URL}/messages/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password,
+          content: editorRef.current.value
+        })
+      });
+      const response = await request.json();
+
+      if (request.ok) {
+        setComments((prevComments) =>
+          prevComments.map((comment) => comment.id == id ? { ...comment, content: response.content } : comment)
+        );
+        handleClearComment();
+      }
+      else if (response.code == 50) alert("Technical Error!");
+      else alert(response.message);
     }
-    else if (response.code == 30) alert("Technical Error!");
-    else alert(response.message);
   };
 
 

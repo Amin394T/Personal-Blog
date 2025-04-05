@@ -7,7 +7,7 @@
 }
 
 .comments-list > .editor {
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }
 
 .editor > textarea {

@@ -6,6 +6,8 @@ import Editor from "./Editor";
 function Comments({ parent }) {
   const [comments, setComments] = useState([]);
   const [showEditor, setShowEditor] = useState(false);
+  const [showControls, setShowControls] = useState(null);
+  const [content, setContent] = useState(null);
   const { data: fetchData, status: fetchStatus } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${parent}`, false);  
 
   const isReply = new URLSearchParams(window.location.search).get("blog") != parent;
@@ -18,6 +20,15 @@ function Comments({ parent }) {
     return (<div className="spinner comments"> <div></div> </div>);
   if (fetchStatus == "error")
     return null;
+
+  let handleDisplayControls = (id) => {
+    setShowControls(showControls === id ? null : id);
+  };
+
+  let handleReply = (comment) => {
+    setContent(`@${comment.user} `);
+    setShowEditor(comment.id);
+  };
 
   let handleDelete = async (id) => {
     const confirmDelete = window.confirm('Delete this comment?');
@@ -37,28 +48,42 @@ function Comments({ parent }) {
     else if (response.code != 60) alert(response.message);
   };
 
+  let handleModify = (comment) => {
+    setContent(comment.content);
+    setShowEditor(comment.id);
+  };
+
   return (
     <div className="comments">
-      { !isReply && <Editor {...{id: parent, setComments, setShowEditor}} /> }
+      { !isReply && <Editor {...{id: parent, setComments, setShowEditor, mode: "create"}} /> }
       {
         comments.map((comment) =>
-          <div className="comments-list" key={comment.id} title={new Date(comment.date).toLocaleString()}>
+          <div className="comments-list" key={comment.id} title={new Date(comment.date).toLocaleString().concat(comment.status == "edited" ? " (edited)" : "")}>
             <div className="comment">
               <div className="comment-user">
                 💬 &nbsp; {comment.user}
-                { comment.user == localStorage.getItem('username') &&
-                  <span className="comment-controls" onClick={() => handleDelete(comment.id)}> ❌ </span>
-                }
+                <span className="comment-controls" onClick={() => handleDisplayControls(comment.id)}> ...
+                  {
+                    showControls == comment.id && (
+                      <ul className="comment-controls-list">
+                        <li onClick={() => handleReply(comment)}>💬 &nbsp; Reply</li>
+                        <li onClick={() => handleModify(comment)}>✏️ &nbsp; Modify</li>
+                        <li onClick={() => handleDelete(comment.id)}>❌ &nbsp; Delete</li>
+                      </ul>
+                    )
+                  }
+                </span>
               </div>
               <div className="comment-text">{comment.content}</div>
             </div>
             { !isReply && <Comments parent={comment.id} /> }
+            { isReply && showEditor == comment.id && <Editor {...{id: comment.id, content, setComments, setShowEditor, mode: "update"}} /> }
           </div>
         )
       }
       {
         isReply && (showEditor == true
-          ? <Editor {...{id: parent, setComments, setShowEditor}} /> 
+          ? <Editor {...{id: parent, setComments, setShowEditor, mode: "create"}} /> 
           : <button onClick={() => setShowEditor(true)}> Reply </button>
         )
       }
