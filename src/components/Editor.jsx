@@ -1,18 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "../styles/Editor.css";
 
 function Editor({ id, content, setComments, setShowEditor, mode }) {
   const editorRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
     editorRef.current.value = content || "";
-    const storedUsername = localStorage.getItem("username");
-    const storedPassword = localStorage.getItem("password");
-    if (storedUsername) usernameRef.current.value = storedUsername;
-    if (storedPassword) passwordRef.current.value = storedPassword;
+    usernameRef.current.value = localStorage.getItem("username");
+    passwordRef.current.value = localStorage.getItem("password");
   }, [content]);
 
   let handleStretchArea = () => {
@@ -53,12 +50,11 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
           : setComments((prevComments) => [...prevComments, response]);
           
         handleClearComment();
-        setMessage("");
       }
       else if (response.code == 31 && username) {
         const confirmCreateUser = window.confirm("Create a new Account?");
         if (!confirmCreateUser) {
-          setMessage("Account Creation Required!");
+          alert("Account Creation Required!");
           return;
         }
 
@@ -73,12 +69,13 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
         const registerResponse = await registerRequest.json();
 
         if (registerRequest.ok) handleSubmitComment();
-        else if (registerResponse.code == 10) setMessage("Technical Error!");
-        else setMessage(registerResponse.message);
+        else if (registerResponse.code == 10) alert("Technical Error!");
+        else alert(registerResponse.message);
         
       }
-      else if (response.code == 30) setMessage("Technical Error!");
-      else setMessage(response.message);
+      else if (response.code == 30)
+        alert("Technical Error!");
+      else alert(response.message);
 
     } else if (mode == "update") {
     
@@ -98,10 +95,9 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
           prevComments.map((comment) => comment.id == id ? { ...comment, content: response.content } : comment)
         );
         handleClearComment();
-        setMessage("");
       }
-      else if (response.code == 50) setMessage("Technical Error!");
-      else setMessage(response.message);
+      else if (response.code == 50) alert("Technical Error!");
+      else alert(response.message);
     }
   
   };
@@ -118,7 +114,6 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
         <button onClick={handleClearComment}>Cancel</button>
         <button onClick={handleSubmitComment}>Submit</button>
       </div>
-      <span className="editor-message">{message}</span>
     </div>
   );
 }

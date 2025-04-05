@@ -1,5 +1,5 @@
 .editor {
-  margin-bottom: 80px;
+  margin-bottom: 70px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -22,12 +22,6 @@
   font-family: inherit;
   height: 47px;
   background-color: #f4f2ef;
-}
-
-.editor-message {
-  color: #d22222;
-  flex-basis: 100%;
-  margin-bottom: 5px;
 }
 
 .editor-authentication > input {
