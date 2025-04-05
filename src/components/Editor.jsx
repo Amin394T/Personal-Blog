@@ -44,7 +44,7 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
       });
       const response = await request.json();
 
-      if (request.ok) {
+      if (response.code == 39) {
         new URLSearchParams(window.location.search).get("blog") == id
           ? setComments((prevComments) => [response, ...prevComments])
           : setComments((prevComments) => [...prevComments, response]); 
@@ -64,7 +64,7 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
         });
         const registerResponse = await registerRequest.json();
 
-        if (registerRequest.ok) handleSubmitComment();
+        if (registerResponse == 19) handleSubmitComment();
         else if (registerResponse.code == 10) alert("Technical Error!");
         else alert(registerResponse.message);
         
@@ -73,7 +73,7 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
       else alert(response.message);
 
     } else if (mode == "update") {
-      
+
       const request = await fetch(`${import.meta.env.VITE_API_URL}/messages/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -85,7 +85,7 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
       });
       const response = await request.json();
 
-      if (request.ok) {
+      if (response.code == 59) {
         setComments((prevComments) =>
           prevComments.map((comment) => comment.id == id ? { ...comment, content: response.content } : comment)
         );
