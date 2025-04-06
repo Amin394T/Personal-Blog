@@ -64,7 +64,7 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
         });
         const registerResponse = await registerRequest.json();
 
-        if (registerResponse == 19) handleSubmitComment();
+        if (registerResponse.code == 19) handleSubmitComment();
         else if (registerResponse.code == 10) alert("Technical Error!");
         else alert(registerResponse.message);
         

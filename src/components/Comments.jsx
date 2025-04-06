@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/Comments.css";
 import useFetch from "../utilities/useFetch";
 import Editor from "./Editor";
@@ -11,19 +11,28 @@ function Comments({ parent }) {
   const { data: fetchData, status: fetchStatus } = useFetch(`${import.meta.env.VITE_API_URL}/messages/${parent}`, false);  
 
   const isReply = new URLSearchParams(window.location.search).get("blog") != parent;
+  const controlsRefs = useRef({});
   
   useEffect(() => {
     if (fetchData) setComments(JSON.parse(fetchData));
   }, [fetchData]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!controlsRefs.current[showControls].contains(event.target))
+        setShowControls(null);
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showControls]);
   
   if (fetchStatus == "loading")
     return (<div className="spinner comments"> <div></div> </div>);
   if (fetchStatus == "error")
     return null;
-
-  let handleDisplayControls = (id) => {
-    setShowControls(showControls === id ? null : id);
-  };
 
   let handleReply = (comment) => {
     setContent(`@${comment.user} `);
@@ -62,7 +71,11 @@ function Comments({ parent }) {
             <div className="comment">
               <div className="comment-user">
                 💬 &nbsp; {comment.user}
-                <span className="comment-controls" onClick={() => handleDisplayControls(comment.id)}> ...
+                <span 
+                  className="comment-controls" 
+                  ref={(ref) => (controlsRefs.current[comment.id] = ref)}
+                  onClick={() => setShowControls(showControls ? null : comment.id )}
+                > ...
                   {
                     showControls == comment.id && (
                       <ul className="comment-controls-list">

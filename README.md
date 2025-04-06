@@ -31,6 +31,5 @@ You can delete the mock-up blogs and their images, and remove their entries from
 
 ## TO-DO
 
-- hide comment pop-up menu when click away
 - fix editing for parent comment
 - register authenticate user separatly from comment
