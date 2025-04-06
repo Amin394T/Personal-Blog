@@ -1,6 +1,6 @@
 .comments {
   max-width: 1020px;
-  margin: 0 auto 20px;
+  margin: 0 auto 15px;
   height: fit-content;
   top: 0;
 }
@@ -50,9 +50,19 @@
   font-size: 16px;
 }
 
+.comment-controls {
+  cursor: pointer;
+  font-size: 10px;
+  padding-top: 5px;
+}
+
 @media screen and (max-width: 1080px) {
   .comments {
     margin-inline: 30px;
+  }
+
+  .comments > button {
+    margin-bottom: 20px;
   }
 
   .comment-user {

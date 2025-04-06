@@ -1,17 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "../styles/Editor.css";
 
 function Editor({ id, setComments, setShowEditor }) {
   const editorRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    const storedPassword = localStorage.getItem("password");
-    if (storedUsername) usernameRef.current.value = storedUsername;
-    if (storedPassword) passwordRef.current.value = storedPassword;
+    usernameRef.current.value = localStorage.getItem("username");
+    passwordRef.current.value = localStorage.getItem("password");
   }, []);
 
   let handleStretchArea = () => {
@@ -39,59 +36,55 @@ function Editor({ id, setComments, setShowEditor }) {
         username,
         password,
         content: editorRef.current.value,
-        parent: id.toString(),
-      }),
+        parent: id.toString()
+      })
     });
     const response = await request.json();
 
-    if (request.ok) {
+    if (response.code == 39) {
       new URLSearchParams(window.location.search).get("blog") == id
         ? setComments((prevComments) => [response, ...prevComments])
         : setComments((prevComments) => [...prevComments, response]);
       handleClearComment();
-      setMessage("");
-    } else if (response.code == 31 && username) {
-      const confirmCreateUser = window.confirm("هل تود تسجيل حساب جديد؟");
+    }
+    else if (response.code == 31 && username) {
+      const confirmCreateUser = window.confirm("هل تريد تسجيل حساب جديد؟");
       if (!confirmCreateUser) {
-        setMessage("تحتاج تسجيل حساب!");
+        alert("تحتاج حسابا للتعليق!");
         return;
       }
 
-      const registerRequest = await fetch(
-        `${import.meta.env.VITE_API_URL}/users/register`,
-        {
+      const registerRequest = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password })
-        }
-      );
+      });
       const registerResponse = await registerRequest.json();
 
-      if (registerRequest.ok) handleSubmitComment();
-      else {
-        switch (registerResponse.code) {
-            case 11: setMessage("لا يسمح بغير الحروف والأرقام في اسم المستخدم!");
-                break;
-            case 12: setMessage("طول اسم المستخدم غير مناسب!");
-                break;
-            case 13: setMessage("طول الرمز السري غير مناسب!");
-                break;
-            default: setMessage("حدث عطب تقني !");
-        }
-      }  
+      switch (registerResponse.code) {
+        case 19: handleSubmitComment();
+          break;
+        case 11: alert("لا يسمح بغير الحروف والأرقام في اسم المستخدم!");
+          break;
+        case 12: alert("طول اسم المستخدم غير مناسب!");
+          break;
+        case 13: alert("طول الرمز السري غير مناسب!");
+          break;
+        default: alert("حدث عطب تقني!");
+      }
     }
     else {
-        switch (response.code) {
-            case 31: setMessage("اسم المستخدم غير صحيح!");
-                break;
-            case 32: setMessage("الرمز السري غير صحيح!");
-                break;
-            case 33: setMessage("الحساب محظور!");
-                break;
-            case 34: setMessage("التعليق فارغ!");
-                break;
-            default: setMessage("حدث عطب تقني !");
-        }
+      switch (response.code) {
+        case 31: alert("اسم المستخدم غير صحيح!");
+          break;
+        case 32: alert("الرمز السري غير صحيح!");
+          break;
+        case 33: alert("الحساب محظور!");
+          break;
+        case 34: alert("التعليق فارغ!");
+          break;
+        default: alert("حدث عطب تقني!");
+      }
     }
   };
 
@@ -106,7 +99,6 @@ function Editor({ id, setComments, setShowEditor }) {
         <button onClick={handleClearComment}>إلغاء</button>
         <button onClick={handleSubmitComment}>إرسال</button>
       </div>
-      <span className="editor-message">{message}</span>
     </div>
   );
 }
