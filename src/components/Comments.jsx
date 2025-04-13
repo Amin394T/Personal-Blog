@@ -18,13 +18,13 @@ function Comments({ parent }) {
   }, [fetchData]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleHideControls = (event) => {
       if (!controlsRefs.current[showControls].contains(event.target))
         setShowControls(null);
     };
 
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
+    document.addEventListener("click", handleHideControls);
+    return () => document.removeEventListener("click", handleHideControls);
   }, [showControls]);
   
   if (fetchStatus == "loading")
@@ -32,8 +32,14 @@ function Comments({ parent }) {
   if (fetchStatus == "error")
     return null;
 
+
   let handleReply = (comment) => {
     setContent(`@${comment.user} `);
+    setShowEditor(true);
+  };
+
+  let handleModify = (comment) => {
+    setContent(comment.content);
     setShowEditor(comment.id);
   };
 
@@ -51,20 +57,18 @@ function Comments({ parent }) {
     });
     const response = await request.json();
 
-    if (request.ok) setComments(comments.filter(comment => comment.id !== id));
-    else if (response.code != 60) alert(response.message);
+    if (request.ok)
+      setComments(comments.filter(comment => comment.id != id));
+    else if (response.code != 60)
+      alert(response.message);
   };
 
-  let handleModify = (comment) => {
-    setContent(comment.content);
-    setShowEditor(comment.id);
-  };
 
   return (
     <div className="comments">
       { !isReply && <Editor {...{id: parent, setComments, setShowEditor, mode: "create"}} /> }
       {
-        comments.map((comment) => { return( <>
+        comments.map((comment) => { return(
           <div className="comments-list" key={comment.id} title={new Date(comment.date).toLocaleString().concat(comment.status == "edited" ? " (edited)" : "")}>
             <div className="comment">
               <div className="comment-user">
@@ -87,18 +91,16 @@ function Comments({ parent }) {
               </div>
               <div className="comment-text">{comment.content}</div>
             </div>
+            { !isReply && showEditor == comment.id && <Editor {...{id: comment.id, content, setComments, setShowEditor, mode: "update"}} /> }
             { !isReply && <Comments parent={comment.id} /> }
             { isReply && showEditor == comment.id && <Editor {...{id: comment.id, content, setComments, setShowEditor, mode: "update"}} /> }
           </div>
-          { !isReply && <Editor {...{id: parent, setComments, setShowEditor, mode: "update"}} /> }
-          </>
         )})
       }
       {
-        isReply && (showEditor == true
-          ? <Editor {...{id: parent, setComments, setShowEditor, mode: "create"}} /> 
+        isReply && showEditor == true
+          ? <Editor {...{id: parent, content, setComments, setShowEditor, mode: "create"}} /> 
           : <button onClick={() => setShowEditor(true)}> Reply </button>
-        )
       }
     </div>
   );
