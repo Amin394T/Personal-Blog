@@ -19,7 +19,7 @@ function Comments({ parent }) {
 
   useEffect(() => {
     const handleHideControls = (event) => {
-      if (!controlsRefs.current[showControls].contains(event.target))
+      if (showControls && !controlsRefs.current[showControls].contains(event.target))
         setShowControls(null);
     };
 
@@ -34,7 +34,7 @@ function Comments({ parent }) {
 
 
   let handleReply = (comment) => {
-    setContent(`@${comment.user} `);
+    setContent(isReply && `@${comment.user} `);
     setShowEditor(true);
   };
 
@@ -98,9 +98,9 @@ function Comments({ parent }) {
         )})
       }
       {
-        isReply && showEditor == true
+        showEditor == true
           ? <Editor {...{id: parent, content, setComments, setShowEditor, mode: "create"}} /> 
-          : <button onClick={() => setShowEditor(true)}> Reply </button>
+          : isReply && <button onClick={() => setShowEditor(true)}> Reply </button>
       }
     </div>
   );
