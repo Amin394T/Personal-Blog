@@ -24,9 +24,7 @@ function Comments({ parent }) {
     };
 
     document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [showControls]);
   
   if (fetchStatus == "loading")
@@ -66,7 +64,7 @@ function Comments({ parent }) {
     <div className="comments">
       { !isReply && <Editor {...{id: parent, setComments, setShowEditor, mode: "create"}} /> }
       {
-        comments.map((comment) =>
+        comments.map((comment) => { return( <>
           <div className="comments-list" key={comment.id} title={new Date(comment.date).toLocaleString().concat(comment.status == "edited" ? " (edited)" : "")}>
             <div className="comment">
               <div className="comment-user">
@@ -92,7 +90,9 @@ function Comments({ parent }) {
             { !isReply && <Comments parent={comment.id} /> }
             { isReply && showEditor == comment.id && <Editor {...{id: comment.id, content, setComments, setShowEditor, mode: "update"}} /> }
           </div>
-        )
+          { !isReply && <Editor {...{id: parent, setComments, setShowEditor, mode: "update"}} /> }
+          </>
+        )})
       }
       {
         isReply && (showEditor == true
