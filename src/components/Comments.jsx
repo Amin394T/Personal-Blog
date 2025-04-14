@@ -42,10 +42,10 @@ function Comments({ parent }) {
 
     if (request.ok)
       setComments(comments.filter(comment => comment.id != id));
-    else if (response.code != 60)
-      alert(response.message);
-    else
+    else if (response.code == 60)
       alert("Technical Error!");
+    else
+    alert(response.message);
   };
 
 
@@ -61,8 +61,8 @@ function Comments({ parent }) {
                 { 
                   comment.user == localStorage.getItem('username') &&
                   <span>
-                    <span className="comment-modify" onClick={() => handleModify(comment)}> 📋 </span>
-                    <span className="comment-delete" onClick={() => handleDelete(comment.id)}> 🗑️ </span>
+                    <span className="comment-modify" onClick={() => handleModify(comment)} title="Modify"> 📋 </span>
+                    <span className="comment-delete" onClick={() => handleDelete(comment.id)} title="Delete"> 🗑️ </span>
                   </span>
                 }
               </div>

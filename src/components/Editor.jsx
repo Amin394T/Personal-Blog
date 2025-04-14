@@ -23,6 +23,28 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
     setShowEditor(false);
   };
 
+  let handleRegistration = async (username, password) => {
+    const confirmCreateUser = window.confirm("Create a new Account?");
+    if (!confirmCreateUser) {
+      alert("Account Creation Required!");
+      return;
+    }
+
+    const registerRequest = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+    });
+    const registerResponse = await registerRequest.json();
+
+    if (registerResponse.code == 19)
+      handleSubmitComment();
+    else if (registerResponse.code == 10)
+      alert("Technical Error!");
+    else
+      alert(registerResponse.message);
+  }
+
   let handleSubmitComment = async () => {
     const username = usernameRef.current.value.trim();
     const password = passwordRef.current.value;
@@ -50,29 +72,15 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
           : setComments((prevComments) => [...prevComments, response]); 
         handleClearComment();
       }
-      else if (response.code == 31 && username) {
-        const confirmCreateUser = window.confirm("Create a new Account?");
-        if (!confirmCreateUser) {
-          alert("Account Creation Required!");
-          return;
-        }
+      else if (response.code == 31 && username)
+        handleRegistration(username, password);
+      else if (response.code == 30)
+        alert("Technical Error!");
+      else
+        alert(response.message);
+    }
 
-        const registerRequest = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        });
-        const registerResponse = await registerRequest.json();
-
-        if (registerResponse.code == 19) handleSubmitComment();
-        else if (registerResponse.code == 10) alert("Technical Error!");
-        else alert(registerResponse.message);
-        
-      }
-      else if (response.code == 30) alert("Technical Error!");
-      else alert(response.message);
-
-    } else if (mode == "update") {
+    else if (mode == "update") {
 
       const request = await fetch(`${import.meta.env.VITE_API_URL}/messages/${id}`, {
         method: "PATCH",
@@ -91,8 +99,11 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
         );
         handleClearComment();
       }
-      else if (response.code == 50) alert("Technical Error!");
-      else alert(response.message);
+      else if (response.code == 50)
+        alert("Technical Error!");
+      else
+        alert(response.message);
+      setShowEditor(false);
     }
   };
 
@@ -100,7 +111,7 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
   return (
     <div className="editor" key={id}>
       <textarea placeholder="Write a comment ..." ref={editorRef} onChange={handleStretchArea} />
-      <div className="editor-authentication">
+      <div className="editor-authentication" style={{ display: mode == "update" ? "none" : "block" }}>
         <input ref={usernameRef} type="text" placeholder="Username" />
         <input ref={passwordRef} type="password" placeholder="Password" />
       </div>
