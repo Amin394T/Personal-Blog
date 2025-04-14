@@ -12,7 +12,8 @@ function Comments({ parent }) {
   const isReply = new URLSearchParams(window.location.search).get("blog") != parent;
   
   useEffect(() => {
-    if (fetchData) setComments(JSON.parse(fetchData));
+    if (fetchData)
+      setComments(JSON.parse(fetchData));
   }, [fetchData]);
 
   if (fetchStatus == "loading")
@@ -45,7 +46,7 @@ function Comments({ parent }) {
     else if (response.code == 60)
       alert("Technical Error!");
     else
-    alert(response.message);
+      alert(response.message);
   };
 
 

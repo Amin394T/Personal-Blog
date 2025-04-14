@@ -30,22 +30,22 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
       return;
     }
 
-    const registerRequest = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
+    const request = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })
     });
-    const registerResponse = await registerRequest.json();
+    const response = await request.json();
 
-    if (registerResponse.code == 19)
-      handleSubmitComment();
-    else if (registerResponse.code == 10)
+    if (response.code == 19)
+      handleSubmit();
+    else if (response.code == 10)
       alert("Technical Error!");
     else
-      alert(registerResponse.message);
+      alert(response.message);
   }
 
-  let handleSubmitComment = async () => {
+  let handleSubmit = async () => {
     const username = usernameRef.current.value.trim();
     const password = passwordRef.current.value;
 
@@ -111,13 +111,13 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
   return (
     <div className="editor" key={id}>
       <textarea placeholder="Write a comment ..." ref={editorRef} onChange={handleStretchArea} />
-      <div className="editor-authentication" style={{ display: mode == "update" ? "none" : "block" }}>
+      <div className="editor-authentication" style={{ visibility: mode == "update" ? "hidden" : "visible" }}>
         <input ref={usernameRef} type="text" placeholder="Username" />
         <input ref={passwordRef} type="password" placeholder="Password" />
       </div>
       <div className="editor-controls">
         <button onClick={handleClearComment}>Cancel</button>
-        <button onClick={handleSubmitComment}>Submit</button>
+        <button onClick={handleSubmit}>Submit</button>
       </div>
     </div>
   );
