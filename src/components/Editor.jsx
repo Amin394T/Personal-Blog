@@ -94,9 +94,9 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
       const response = await request.json();
 
       if (response.code == 59) {
-        setComments((prevComments) =>
+        setComments((prevComments) => (
           prevComments.map((comment) => comment.id == id ? { ...comment, content: response.content } : comment)
-        );
+        ));
         handleClearComment();
       }
       else if (response.code == 50)

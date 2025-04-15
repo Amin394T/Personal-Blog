@@ -26,7 +26,8 @@ function App() {
   const blogsList = JSON.parse(data);
   const blogData = blogsList.find((blog) => blog.path == currentBlog);
 
-  if (!searchWord && !currentBlog) document.title = welcome.name;
+  if (!searchWord && !currentBlog)
+    document.title = welcome.name;
 
   let handleSearch = (query) => {
     query = query.toLowerCase();

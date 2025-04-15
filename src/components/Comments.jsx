@@ -42,7 +42,7 @@ function Comments({ parent }) {
     const response = await request.json();
 
     if (request.ok)
-      setComments(comments.filter(comment => comment.id != id));
+      setComments(comments.filter((comment) => comment.id != id));
     else if (response.code == 60)
       alert("Technical Error!");
     else
