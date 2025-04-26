@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/Editor.css";
 
 function Editor({ id, content, setComments, setShowEditor, mode }) {
   const editorRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
+  const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
     editorRef.current.value = content || "";
@@ -46,9 +47,12 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
   }
 
   let handleSubmit = async () => {
+    if (processing) return;
+    setProcessing(true);
+    setTimeout(() => {}, 3000);
+
     const username = usernameRef.current.value.trim();
     const password = passwordRef.current.value;
-
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
 
@@ -69,7 +73,7 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
       if (response.code == 39) {
         new URLSearchParams(window.location.search).get("blog") == id
           ? setComments((prevComments) => [response, ...prevComments])
-          : setComments((prevComments) => [...prevComments, response]); 
+          : setComments((prevComments) => [...prevComments, response]);
         handleClearComment();
       }
       else if (response.code == 31 && username)
@@ -103,8 +107,8 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
         alert("Technical Error!");
       else
         alert(response.message);
-      setShowEditor(false);
     }
+    setProcessing(false);
   };
 
 
@@ -117,7 +121,7 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
       </div>
       <div className="editor-controls">
         <button onClick={handleClearComment}>Cancel</button>
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleSubmit} disabled={processing}>Submit</button>
       </div>
     </div>
   );

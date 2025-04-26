@@ -20,6 +20,12 @@
   font-family: inherit;
 }
 
+.comments button[disabled] {
+  background-color: #f5efe6;
+  color: #003135;
+  cursor: not-allowed;
+}
+
 .comments > button {
   margin-left: calc(100% - 75px);
   margin-bottom: 30px;
