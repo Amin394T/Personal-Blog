@@ -14,12 +14,14 @@ function Article({ blogData, handleSearch }) {
 
   return (
     <div className="article">
-      <h1>{blogData.title}</h1>
+      <div className="article-image" style={{backgroundImage: `linear-gradient(rgba(245, 239, 230, 0.2), rgba(245, 239, 230, 1)), url(./images/${blogData.image})`}}>
+        <h1>{blogData.title}</h1>
 
-      <div className="article-info">  
-        <span>📘 &nbsp;{blogData.tags[0]}</span>
-        <span>🖊️ &nbsp;{blogData.author}</span>
-        <span>🕓 &nbsp;{blogData.date}</span>
+        <div className="article-info">  
+          <span>📘 &nbsp;{blogData.tags[0]}</span>
+          <span>🖊️ &nbsp;{blogData.author}</span>
+          <span>🕓 &nbsp;{blogData.date}</span>
+        </div>
       </div>
 
       <Markdown>{data}</Markdown>

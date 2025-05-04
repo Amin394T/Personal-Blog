@@ -22,7 +22,34 @@ function Editor({ id, setComments, setShowEditor }) {
     setShowEditor(false);
   };
 
-  let handleSubmitComment = async () => {
+  let handleRegistration = async (username, password) => {
+    const confirmCreateUser = window.confirm("هل تريد تسجيل حساب جديد؟");
+      if (!confirmCreateUser) {
+        alert("تحتاج حسابا للتعليق!");
+        return;
+      }
+
+      const request = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+      });
+      const response = await request.json();
+
+      switch (response.code) {
+        case 19: handleSubmit();
+          break;
+        case 11: alert("لا يسمح بغير الحروف والأرقام في اسم المستخدم!");
+          break;
+        case 12: alert("طول اسم المستخدم غير مناسب!");
+          break;
+        case 13: alert("طول الرمز السري غير مناسب!");
+          break;
+        default: alert("حدث عطب تقني!");
+      }
+  }
+
+  let handleSubmit = async () => {
     const username = usernameRef.current.value.trim();
     const password = passwordRef.current.value;
 
@@ -47,32 +74,8 @@ function Editor({ id, setComments, setShowEditor }) {
         : setComments((prevComments) => [...prevComments, response]);
       handleClearComment();
     }
-    else if (response.code == 31 && username) {
-      const confirmCreateUser = window.confirm("هل تريد تسجيل حساب جديد؟");
-      if (!confirmCreateUser) {
-        alert("تحتاج حسابا للتعليق!");
-        return;
-      }
-
-      const registerRequest = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password })
-      });
-      const registerResponse = await registerRequest.json();
-
-      switch (registerResponse.code) {
-        case 19: handleSubmitComment();
-          break;
-        case 11: alert("لا يسمح بغير الحروف والأرقام في اسم المستخدم!");
-          break;
-        case 12: alert("طول اسم المستخدم غير مناسب!");
-          break;
-        case 13: alert("طول الرمز السري غير مناسب!");
-          break;
-        default: alert("حدث عطب تقني!");
-      }
-    }
+    else if (response.code == 31 && username)
+      handleRegistration(username, password);
     else {
       switch (response.code) {
         case 31: alert("اسم المستخدم غير صحيح!");
@@ -97,7 +100,7 @@ function Editor({ id, setComments, setShowEditor }) {
       </div>
       <div className="editor-controls">
         <button onClick={handleClearComment}>إلغاء</button>
-        <button onClick={handleSubmitComment}>إرسال</button>
+        <button onClick={handleSubmit}>إرسال</button>
       </div>
     </div>
   );

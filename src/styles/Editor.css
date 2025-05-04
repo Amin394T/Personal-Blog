@@ -55,12 +55,13 @@
   }
 
   .editor-authentication {
-    width: 150px;
+    width: 120px;
   }
 
   .editor-authentication > input {
     font-size: 13px;
     height: 21px;
     margin-bottom: 5px;
+    width: 120px;
   }
 }
