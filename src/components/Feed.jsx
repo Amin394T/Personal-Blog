@@ -4,9 +4,12 @@ function Feed({ blogsList, handleSelection, searchWord }) {
   if (searchWord)
     document.title = `Searching : "${searchWord}"`;
 
-  const filteredBlogs = blogsList.filter((blog) => 
-    (blog.tags.some((tag) => tag.toLowerCase().includes(searchWord))) ||
-    (blog.title.toLowerCase().includes(searchWord))
+  const filteredBlogs = blogsList.filter((blog) =>
+    blog.status != "hidden" &&
+    (
+      blog.tags.some((tag) => tag.toLowerCase().includes(searchWord)) ||
+      blog.title.toLowerCase().includes(searchWord)
+    )
   );
   const sortedBlogs = filteredBlogs.sort((blog1, blog2) => new Date(blog2.date) - new Date(blog1.date));
 
