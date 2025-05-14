@@ -50,6 +50,10 @@
   font-size: 14px;
 }
 
+.article-author {
+  cursor: pointer;
+}
+
 .article-tags {
   margin-top: 40px;
   display: flex;

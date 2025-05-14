@@ -8,7 +8,8 @@ function Feed({ blogsList, handleSelection, searchWord }) {
     blog.status != "hidden" &&
     (
       blog.tags.some((tag) => tag.toLowerCase().includes(searchWord)) ||
-      blog.title.toLowerCase().includes(searchWord)
+      blog.title.toLowerCase().includes(searchWord) ||
+      blog.author.toLowerCase() == searchWord
     )
   );
   const sortedBlogs = filteredBlogs.sort((blog1, blog2) => new Date(blog2.date) - new Date(blog1.date));
