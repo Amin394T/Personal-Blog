@@ -37,6 +37,14 @@
   text-align: justify;
 }
 
+.article img {
+  max-width: 100%;
+  display: block;
+  margin: 30px auto;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
 .article hr {
   color: #c2cbd2;
 }
