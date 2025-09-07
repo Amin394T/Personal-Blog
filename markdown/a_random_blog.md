@@ -12,4 +12,4 @@ Duis sagittis id metus ac volutpat. Fusce eu purus vitae erat maximus mattis hen
 
 Vestibulum ut congue nibh, id euismod nibh. Nunc commodo sapien non dolor ullamcorper, tristique semper quam auctor. Integer accumsan cursus luctus. Maecenas pulvinar purus elit, vel aliquet neque condimentum nec. Nam accumsan lorem at metus lacinia egestas. Morbi sollicitudin ipsum eu augue sodales, ac euismod quam ornare. Ut posuere commodo mi, eu bibendum sem eleifend a. Nulla efficitur libero vitae purus lacinia, eu eleifend purus efficitur. Mauris ullamcorper mauris nec commodo pellentesque. Fusce feugiat consectetur arcu, quis aliquam dui vehicula ac. Nunc condimentum mauris ex, ut finibus dolor pharetra id. Ut blandit ex id porta vestibulum. Fusce id pretium tortor, in rutrum arcu. Phasellus vulputate posuere aliquet. Nulla euismod volutpat vestibulum.
 
-![](images/a_random_blog.png "A Random Image")
+![](public/images/some_random_title.png "XYZ")
