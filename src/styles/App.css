@@ -33,6 +33,10 @@ body,
   font-size: 48px;
 }
 
+.error + .comments {
+  display: none;
+}
+
 .spinner {
   display: flex;
   justify-content: center;
