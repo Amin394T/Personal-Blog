@@ -61,7 +61,7 @@ function App() {
       { currentBlog
         ? <>
             <Article {...{ blogData, handleSearch }} />
-            <Comments {...{parent: blogData?.path}} />
+            <Comments {...{ parent: blogData?.path }} />
           </>
         : <Feed {...{ blogsList, handleSelection, searchWord }} />
       }

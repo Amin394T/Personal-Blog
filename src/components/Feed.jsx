@@ -5,7 +5,7 @@ function Feed({ blogsList, handleSelection, searchWord }) {
     document.title = `Searching : "${searchWord}"`;
 
   const filteredBlogs = blogsList.filter((blog) =>
-    blog.status != "hidden" &&
+    !blog?.hidden &&
     (
       blog.tags.some((tag) => tag.toLowerCase().includes(searchWord)) ||
       blog.title.toLowerCase().includes(searchWord) ||
