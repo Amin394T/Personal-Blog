@@ -53,11 +53,12 @@ function App() {
       { !currentBlog && !searchWord &&
         <div className="article">
           <h1> {home.heading} </h1>
-          <p> {home.line_1} </p>
-          <p> {home.line_2} </p>
-          <p> {home.line_3} </p>
-        </div> }
-
+          { Object.keys(home)
+              .filter(key => key.startsWith("line_"))
+              .map(key => <p key={key}>{home[key]}</p>)
+          }
+        </div>
+      }
       { currentBlog
         ? <>
             <Article {...{ blogData, handleSearch }} />
