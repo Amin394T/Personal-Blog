@@ -58,7 +58,8 @@
   font-size: 14px;
 }
 
-.article-author {
+.article-author,
+.article-topic {
   cursor: pointer;
 }
 

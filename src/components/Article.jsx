@@ -18,7 +18,7 @@ function Article({ blogData, handleSearch }) {
         <h1>{blogData.title}</h1>
 
         <div className="article-info" >  
-          <span>📘 &nbsp;{blogData.tags[0]}</span>
+          <span className="article-topic" onClick={() => handleSearch(blogData.tags[0])}>📘 &nbsp;{blogData.tags[0]}</span>
           <span className="article-author" onClick={() => handleSearch(blogData.author)}>🖊️ &nbsp;{blogData.author}</span>
           <span>🕓 &nbsp;{blogData.date}</span>
         </div>

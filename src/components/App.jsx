@@ -2,9 +2,9 @@ import "../styles/App.css";
 import Navigation from "./Navigation";
 import Article from "./Article";
 import Feed from "./Feed";
+import Comments from "./Comments";
 import useFetch from "../utilities/useFetch";
 import { startTransition, useState } from "react";
-import Comments from "./Comments";
 
 function App() {
   const [currentBlog, setCurrentBlog] = useState(new URLSearchParams(window.location.search).get("blog"));
@@ -16,9 +16,9 @@ function App() {
   };
 
   const { data, status } = useFetch("./markdown/_files_list.json");
-  const welcome = JSON.parse(useFetch("./markdown/_welcome.json").data);
+  const home = JSON.parse(useFetch("./markdown/_home_page.json").data);
   
-  if (status == "loading" || !welcome)
+  if (status == "loading" || !home)
     return (<div className="spinner"> <div></div> </div>);
   if (status == "error" || !data)
     return (<div className="error"> <div>&#x2716;</div> Oops! Something went wrong. </div>);
@@ -27,7 +27,7 @@ function App() {
   const blogData = blogsList.find((blog) => blog.path == currentBlog);
 
   if (!searchWord && !currentBlog)
-    document.title = welcome.name;
+    document.title = home.name;
 
   let handleSearch = (query) => {
     query = query.toLowerCase();
@@ -39,11 +39,11 @@ function App() {
       : history.pushState({ query }, "", `?search=${query}`);
   };
 
-  let handleSelection = (path) => {
-    setCurrentBlog(path);
+  let handleSelection = (name) => {
+    setCurrentBlog(name);
     setSearchWord("");
     window.scrollTo(0, 0);
-    history.pushState({ path }, "", `?blog=${path}`);
+    history.pushState({ name }, "", `?blog=${name}`);
   };
 
   return (
@@ -52,10 +52,10 @@ function App() {
 
       { !currentBlog && !searchWord &&
         <div className="article">
-          <h1> {welcome.heading} </h1>
-          <p> {welcome.line_1} </p>
-          <p> {welcome.line_2} </p>
-          <p> {welcome.line_3} </p>
+          <h1> {home.heading} </h1>
+          <p> {home.line_1} </p>
+          <p> {home.line_2} </p>
+          <p> {home.line_3} </p>
         </div> }
 
       { currentBlog
@@ -70,3 +70,4 @@ function App() {
 }
 
 export default App;
+// allow dynamic number of _weclome lines
