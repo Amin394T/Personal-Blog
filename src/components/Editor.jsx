@@ -1,17 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/Editor.css";
 
-function Editor({ id, content, setComments, setShowEditor, mode }) {
+function Editor({ id, content, setComments, mode, show }) {
   const editorRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
   const [processing, setProcessing] = useState(false);
+  const [visible, setVisible] = useState(show ? true : false);
 
   useEffect(() => {
-    editorRef.current.value = content || "";
-    usernameRef.current.value = localStorage.getItem("username");
-    passwordRef.current.value = localStorage.getItem("password");
-  }, [content]);
+    if (visible) {
+      editorRef.current.value = content ?? '';
+      usernameRef.current.value = localStorage.getItem("username") ?? '';
+      passwordRef.current.value = localStorage.getItem("password") ?? '';
+    }
+  }, [visible, content]);
+  
 
   let handleStretchArea = () => {
     editorRef.current.style.height = "0";
@@ -19,9 +23,13 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
   };
 
   let handleClearComment = () => {
-    editorRef.current.value = "";
-    handleStretchArea();
-    setShowEditor(false);
+    if (mode == "update" && typeof show == "function")
+      show(false);
+    else {
+      editorRef.current.value = "";
+      handleStretchArea();
+      typeof id == "number" && setVisible(false);
+    }
   };
 
   let handleRegistration = async (username, password) => {
@@ -108,9 +116,13 @@ function Editor({ id, content, setComments, setShowEditor, mode }) {
       else
         alert(response.message);
     }
+
     setProcessing(false);
   };
 
+
+  if (!visible)
+    return <button className="editor-toggle" onClick={() => setVisible(true)}> Reply </button>;
 
   return (
     <div className="editor" key={id}>

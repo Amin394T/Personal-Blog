@@ -6,8 +6,40 @@
   gap: 10px;
 }
 
-.comments-list > .editor {
+.comment-thread > .editor {
+  margin-left: 30px;
+}
+
+.comment-replies > .editor {
   margin-bottom: 10px;
+}
+
+.editor button,
+.editor-toggle {
+  background-color: #003135;
+  padding: 1px 5px;
+  border-radius: 5px;
+  color: #f5efe6;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
+  height: 27px;
+  width: 75px;
+  margin-left: 10px;
+  font-family: inherit;
+}
+
+.editor button[disabled],
+.editor-toggle[disabled] {
+  background-color: #f5efe6;
+  color: #003135;
+  cursor: not-allowed;
+}
+
+.editor-toggle {
+  margin-left: calc(100% - 75px) !important;
+  margin-bottom: 35px;
 }
 
 .editor > textarea {
@@ -38,6 +70,10 @@
 @media screen and (max-width: 1080px) {
   .editor {
     margin-bottom: 55px;
+  }
+
+  .comment-thread > .editor {
+    margin-left: 20px;
   }
 }
 
