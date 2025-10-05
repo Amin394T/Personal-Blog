@@ -71,7 +71,7 @@ function Comments({ parent }) {
       <Editor id={parent} setComments={setComments} mode="create" show={true} />
       {
         comments.map((comment) =>
-          <div className="comments-thread" key={comment.id}>
+          <div className="comment-thread" key={comment.id}>
 
             <Comment comment={comment} setComments={setComments} />
             <div className="comment-replies">

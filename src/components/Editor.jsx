@@ -81,7 +81,9 @@ function Editor({ id, content, setComments, mode, show }) {
       if (response.code == 39) {
         new URLSearchParams(window.location.search).get("blog") == id
           ? setComments((prevComments) => [response, ...prevComments])
-          : setComments((prevComments) => [...prevComments, response]);
+          : setComments((prevComments) => prevComments.map(comment => 
+              comment.id == id ? { ...comment, replies: [...(comment.replies ?? []), response] } : comment
+            ));
         handleClearComment();
       }
       else if (response.code == 31 && username)
@@ -127,7 +129,7 @@ function Editor({ id, content, setComments, mode, show }) {
   return (
     <div className="editor" key={id}>
       <textarea placeholder="Write a comment ..." ref={editorRef} onChange={handleStretchArea} />
-      <div className="editor-authentication" style={{ visibility: mode == "update" ? "hidden" : "visible" }}>
+      <div className="editor-authentication" style={ mode == "update" ? { height: 0, visibility: "hidden" } : {} }>
         <input ref={usernameRef} type="text" placeholder="Username" />
         <input ref={passwordRef} type="password" placeholder="Password" />
       </div>
